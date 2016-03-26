@@ -1,6 +1,6 @@
 
 public class euler1 {
-
+	//test cloud
 	public static void main(String[] args) 
 	{
 		int count = 0;
