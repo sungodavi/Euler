@@ -1,8 +1,9 @@
-import java.util.Arrays;
-
+import java.util.*;
+import java.math.BigInteger;
 
 public class Methods 
 {
+	//add sort algorithm
 	public static int Euclid(int x, int y)
 	{
 		if(y == 0)
@@ -13,9 +14,15 @@ public class Methods
 			return Euclid(y, x%y);
 	}
 	
-	public static boolean[] sieve(int num)
+	public static BigInteger convert(long num)
+	{
+		return new BigInteger(num + "");
+	}
+	
+	public static ArrayList<Integer> sieve(int num)
 	{
 		boolean ans[] = new boolean[num + 1];
+		ArrayList<Integer> sieve = new ArrayList<Integer>();
 		Arrays.fill(ans, true);
 		ans[0] = false;
 		ans[1] = false;
@@ -26,19 +33,39 @@ public class Methods
 				ans[j] = false;
 			}
 		}
-		return ans;
+		
+		for(int i = 0; i < ans.length; i++)
+		{
+			if(ans[i])
+				sieve.add(i);
+		}
+		return sieve;
 	}
 	
-	public static void main(String[] args)
+	public static int toInt(int[] array)
 	{
-		boolean[] x = sieve(100);
-		for(int y=2; y<x.length; y++)
+		String s = "";
+		for(int i = array.length -1; i >= 0; i--)
+			s += array[i];
+		return Integer.parseInt(s);
+	}
+	
+	public static int[] toArray(int num)
+	{
+		int[] a = new int[(int)Math.log10(num) + 1];
+		int index = 0;
+		while(num > 0)
 		{
-			if(x[y])
-				System.out.println(y);
-				
+			a[index] = num%10;
+			num /= 10;
+			index++;
 		}
-
+		return a;
+	}
+	
+	public static String toString(Collection a)
+	{
+		return Arrays.toString(a.toArray());
 	}
 
 }

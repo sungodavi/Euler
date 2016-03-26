@@ -18,7 +18,7 @@ public class Euler53
 		return ans;
 	}
 	
-	public static int Euler53()
+	public static int solve()
 	{
 		int count = 0;
 		for(int x = 5; x <= 100; x++)
@@ -36,6 +36,6 @@ public class Euler53
 	}
 	public static void main(String[] args)
 	{
-		System.out.println(Euler53());
+		System.out.println(solve());
 	}
 }

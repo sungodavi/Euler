@@ -1,4 +1,4 @@
-import java.lang.*;
+
 
 public class Euler36 
 {
@@ -10,7 +10,7 @@ public class Euler36
 	    return true;    
 	}
 	
-	static long Euler36()
+	static long solve()
 	{
 		long sum = 0;
 		for(int x = 1; x <= 1000000; x++)
@@ -29,7 +29,7 @@ public class Euler36
 	
 	public static void main(String[] args)
 	{
-		long x = Euler36();
+		long x = solve();
 		System.out.println(x);
 	}
 	

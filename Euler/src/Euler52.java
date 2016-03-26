@@ -14,10 +14,9 @@ public class Euler52
 		Arrays.sort(ans);
 		return ans;
 	}
-	public static long Euler52()
+	public static long solve()
 	{
 		long num = 1;
-		boolean temp = true;;
 		while(true)
 		{
 			if(Arrays.equals(getDigits(num), getDigits(num * 2))  &&
@@ -32,7 +31,7 @@ public class Euler52
 	
 	public static void main(String[] args)
 	{
-		System.out.println(Euler52());
+		System.out.println(solve());
 	}
 
 }

@@ -12,7 +12,6 @@ public class Euler4
 		}
 		int end = digits.length-1;
 		int count = 0;
-		boolean ans;
 		for(int n=0; n< digits.length; n++)
 		{
 			if(digits[n] == digits[end-n])

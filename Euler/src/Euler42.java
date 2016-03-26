@@ -1,9 +1,5 @@
-import java.io.File;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.Scanner;
-
-
+import java.util.*;
+import java.io.*;
 public class Euler42 
 {
 	public static String[] array;
@@ -16,8 +12,8 @@ public class Euler42
 		for(int x=0; x< array.length; x++)
 		{
 			array[x] = array[x].substring(1, array[x].length() -1);
-			//System.out.println(array[x]);
 		}
+		scan.close();
 		
 	}
 	

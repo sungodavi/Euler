@@ -39,7 +39,7 @@ public class Euler46
 		}
 		return true;
 	}
-	public static int Euler46()
+	public static int solve()
 	{
 		boolean check = false;
 		int x = 3;
@@ -68,7 +68,6 @@ public class Euler46
 	
 	public static void main(String[] args)
 	{
-		//System.out.println(checkPrime(11));
-		System.out.println(Euler46());
+		System.out.println(solve());
 	}
 }

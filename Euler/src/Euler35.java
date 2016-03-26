@@ -68,7 +68,7 @@ public class Euler35 {
 		return true;
 	}
 	
-	public static int Euler35()
+	public static int solve()
 	{
 		boolean[] nums = sieve(1000000);
 		int count = 13;
@@ -83,6 +83,6 @@ public class Euler35 {
 	
 	public static void main(String[] args)
 	{
-		System.out.println(Euler35());
+		System.out.println(solve());
 	}
 }

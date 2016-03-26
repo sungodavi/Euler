@@ -9,7 +9,7 @@ public class Euler40
 		num /= Math.pow(10, digits - place);
 		return num;
 	}
-	public static int Euler40()
+	public static int solve()
 	{
 		int ans = 1;
 		int digits = 1;
@@ -30,7 +30,7 @@ public class Euler40
 	
 	public static void main(String[] args)
 	{
-		int x = Euler40();
+		int x = solve();
 		System.out.println(x);
 	}
 }

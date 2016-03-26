@@ -1,7 +1,7 @@
 
 public class Euler3 
 {
-	public static int Euler3(long num)
+	public static int solve(long num)
 	{
 		long temp = num;
 		int largestFactor = 1;
@@ -29,7 +29,7 @@ public class Euler3
 	public static void main(String args[])
 	{
 		long input = 600851475143L;
-		int output = Euler3(input);
+		int output = solve(input);
 		System.out.println(output);
 	}
 

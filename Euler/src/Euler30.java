@@ -30,7 +30,7 @@ public class Euler30
 		return false;
 	}
 	
-	public static int Euler30()
+	public static int solve()
 	{
 		int ans = 0;
 		for(int x=4150; x <= 355000; x++)
@@ -45,7 +45,7 @@ public class Euler30
 	
 	public static void main(String[] args)
 	{
-		int x = Euler30();
+		int x = solve();
 		System.out.println(x);		
 	}
 

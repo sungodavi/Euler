@@ -1,5 +1,4 @@
 import java.math.BigInteger;
-import java.util.*;
 public class Euler57 
 {
 	public static BigInteger[] root2(int times)

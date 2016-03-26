@@ -1,7 +1,7 @@
 
 public class Euler6 
 {
-	public static long Euler6(int num)
+	public static long solve(int num)
 	{
 		int ans = 0;
 		for(int a=1; a<=num; a++)
@@ -17,7 +17,7 @@ public class Euler6
 	
 	public static void main(String[] args)
 	{
-		long ans = Euler6(100);
+		long ans = solve(100);
 		System.out.println(ans);
 	}
 	

@@ -1,4 +1,3 @@
-import java.util.*;
 public class Euler58 
 {
 	public static boolean checkPrime(int num)

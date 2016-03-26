@@ -31,7 +31,7 @@ public class Euler37
 		return true;
 		
 	}
-	public static int Euler37()
+	public static int solve()
 	{
 		int sum = 0;
 		int x = 11;
@@ -53,7 +53,7 @@ public class Euler37
 	
 	public static void main(String[] args)
 	{
-		int x = Euler37();
+		int x = solve();
 		System.out.println(x);
 	}
 }

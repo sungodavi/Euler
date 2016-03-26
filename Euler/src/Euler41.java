@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 
 public class Euler41 
 {
@@ -83,7 +81,7 @@ public class Euler41
 		return ans;
 	}
 	
-	public static long Euler41()
+	public static long solve()
 	{
 		long ans = 0;
 		for(int x = 3; x < 10; x++)
@@ -98,7 +96,7 @@ public class Euler41
 	
 	public static void main(String[] args)
 	{
-		long x = Euler41();
+		long x = solve();
 		System.out.println(x);
 	}
 }

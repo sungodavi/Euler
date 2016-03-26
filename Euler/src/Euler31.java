@@ -1,7 +1,7 @@
 
 public class Euler31 
 {
-	public static int Euler31()
+	public static int solve()
 	{
 		int count = 0;
 		for(int l200 = 0; l200 <= 1; l200++)
@@ -40,6 +40,6 @@ public class Euler31
 	
 	public static void main(String[] args)
 	{
-		System.out.println(Euler31());
+		System.out.println(solve());
 	}
 }

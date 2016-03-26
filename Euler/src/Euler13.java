@@ -24,6 +24,7 @@ public class Euler13
 			nums[count] = new BigInteger(temp);
 			count++;
 		}
+		scan.close();
 		System.out.println(sum(nums));
 	}
 

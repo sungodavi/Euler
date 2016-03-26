@@ -14,7 +14,7 @@ public class Euler45
 	{
 		return n*(2*n-1);
 	}
-	public static long Euler45()
+	public static long solve()
 	{
 		boolean check = false;
 		boolean temp1 = false;
@@ -62,7 +62,7 @@ public class Euler45
 	
 	public static void main(String[] args)
 	{
-		long x = Euler45();
+		long x = solve();
 		System.out.println(x);
 	}
 }

@@ -1,6 +1,4 @@
 import java.math.BigInteger;
-import java.util.Arrays;
-
 public class Euler43 {
 	public static int[] a;
 	public static BigInteger sum = BigInteger.ZERO;

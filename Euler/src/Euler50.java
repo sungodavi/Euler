@@ -17,7 +17,7 @@ public class Euler50
 			}
 		}
 		
-		ArrayList list = new ArrayList<Integer>();
+		ArrayList<Integer> list = new ArrayList<Integer>();
 		for(int i = 2; i < array.length; i++)
 		{
 			if(array[i])
@@ -38,7 +38,7 @@ public class Euler50
 		}
 		return true;
 	}
-	public static int Euler50(int num)
+	public static int solve(int num)
 	{
 		int ans = 0;
 		int ansCount = 0;
@@ -66,8 +66,8 @@ public class Euler50
 	
 	public static void main(String[] args)
 	{
-		System.out.println(checkPrime(953));
-		System.out.println(Euler50(1000000));
+		int x = 1000000;
+		System.out.println(solve(x));
 	}
 
 }

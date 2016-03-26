@@ -63,7 +63,7 @@ public class Euler49
 	
 	public static void main(String[] args)
 	{
-		ArrayList sieve = sieve(1000,9999);
+		ArrayList<Integer> sieve = sieve(1000,9999);
 		for(int i = 0; i < sieve.size() - 1; i++)
 		{
 			for(int j = 1; i + j < sieve.size(); j++)
