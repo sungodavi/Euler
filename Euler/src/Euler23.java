@@ -1,8 +1,7 @@
 
 public class Euler23 
 {
-	public static int abundantArray[] = new int[28123
-	                                            ];
+	public static int abundantArray[] = new int[28123];
 	public static long checkNumber(int num)
 	{
 		long ans = 0;
@@ -30,7 +29,6 @@ public class Euler23
 	
 	public static boolean checkAbundant(int num)
 	{
-		int count;
 		for(int x=0; abundantArray[x] < num; x++)
 		{
 			for(int y = 0;  abundantArray[y] < num; y++)
@@ -42,10 +40,9 @@ public class Euler23
 		return true;
 	}
 	
-	public static long Euler23()
+	public static long solve()
 	{
 		long ans = 0;
-		int temp = 0;
 		for(int x=1; x<= abundantArray.length-1; x++)
 		{
 			if(checkAbundant(x))
@@ -60,7 +57,7 @@ public class Euler23
 	public static void main(String[] args)
 	{
 		fill();
-		long x = Euler23();
+		long x = solve();
 		System.out.println(x);
 	}
 	

@@ -56,7 +56,7 @@ public class Euler27
 		return array;
 	}
 	
-	public static int Euler27()
+	public static int solve()
 	{
 		int[] array = sieve(1000);
 		int[] count = new int[3];
@@ -88,7 +88,7 @@ public class Euler27
 	
 	public static void main(String[] args)
 	{
-		int x = Euler27();
+		int x = solve();
 		System.out.println(x);
 	}
 

@@ -4,7 +4,6 @@ public class Euler26 {
 
 	public static void main(String[] args) {
 		BigInteger temp = BigInteger.TEN;
-		BigInteger check = BigInteger.ONE;
 		int[] ans = new int[2];
 
 		for (int n = 999; n > 1; n--) 

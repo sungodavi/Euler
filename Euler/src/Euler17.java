@@ -50,7 +50,7 @@ public class Euler17
 		return count;
 	}
 	
-	public static long Euler17()
+	public static long solve()
 	{
 		for(int x=1; x<= 1000; x++)
 		{
@@ -61,7 +61,7 @@ public class Euler17
 	}
 	public static void main(String[] args)
 	{
-		long x = Euler17();
+		long x = solve();
 		System.out.println(x);
 	}
 }

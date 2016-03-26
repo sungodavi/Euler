@@ -15,6 +15,7 @@ public class Euler22
 			//System.out.println(array[x]);
 		}
 		Arrays.sort(array);
+		scan.close();
 		
 	}
 	
@@ -29,7 +30,7 @@ public class Euler22
 		return ans;
 	}
 	
-	public static long Euler22()
+	public static long solve()
 	{
 		long ans = 0;
 		for(int x=0; x< array.length; x++)
@@ -42,7 +43,7 @@ public class Euler22
 	public static void main(String[] args) throws IOException
 	{
 		fill();
-		long x = Euler22();
+		long x = solve();
 		System.out.println(x);
 	}
 

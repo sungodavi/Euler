@@ -7,7 +7,7 @@ public class Euler14
 	public static long counter = 0;
 	public static long ans = 1;
 
-	public static void Euler14()
+	public static void solve()
 	{
 		Arrays.fill(array, true);
 		long temp;
@@ -45,7 +45,7 @@ public class Euler14
 	
 	public static void main(String[] args)
 	{
-		Euler14();
+		solve();
 		System.out.println(Euler14.ans);
 	}
 }

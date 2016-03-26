@@ -14,7 +14,7 @@ public class Euler10
 		return true;
 	}
 	
-	public static long Euler10()
+	public static long solve()
 	{
 		long ans = 2;
 		long temp = 3;
@@ -32,7 +32,7 @@ public class Euler10
 	
 	public static void main(String[] args)
 	{
-		long x = Euler10();
+		long x = solve();
 		System.out.println(x);
 	}
 	

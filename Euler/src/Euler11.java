@@ -1,4 +1,4 @@
-import java.util.*;
+
 public class Euler11 
 {
 	static int Grid [][] = {
@@ -96,7 +96,7 @@ public class Euler11
 		return ans;
 	}
 	
-	public static long Euler11()
+	public static long solve()
 	{
 		long[] array = {checkDiagonaRight(), checkDiagonaLeft(), checkHorizontal(), checkVertical()};
 		for(int x=0; x<4; x++)
@@ -124,7 +124,7 @@ public class Euler11
 	}
 	public static void main(String[] args)
 	{
-		long x = Euler11();
+		long x = solve();
 		System.out.println(x);
 	}
 

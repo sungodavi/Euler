@@ -44,7 +44,7 @@ public class Euler18
 			count ++;
 			row ++;
 		}
-		
+		scan.close();
 		return ans;
 		
 	}

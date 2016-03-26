@@ -20,7 +20,7 @@ public class Euler21
 		return false;
 	}
 	
-	public static void Euler21(int num)
+	public static void solve(int num)
 	{
 		for(int a = 1; a < num; a++)
 		{
@@ -39,7 +39,7 @@ public class Euler21
 	
 	public static void main(String[] args)
 	{
-		Euler21(10000);
+		solve(10000);
 		System.out.println(counter);
 	}
 

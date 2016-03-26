@@ -14,7 +14,7 @@ public class Euler20
 		return ans;
 	}
 	
-	public static long Euler20(int num)
+	public static long solve(int num)
 	{
 		BigInteger x = specialFactorial(num);
 		long ans =0;
@@ -28,7 +28,7 @@ public class Euler20
 	}
 	public static void main(String[] args)
 	{
-		long x = Euler20(100);
+		long x = solve(100);
 		System.out.println(x);
 	}
 

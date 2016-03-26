@@ -14,9 +14,8 @@ public class Euler19
 		}
 	}
 	
-	public static void Euler19()
+	public static void solve()
 	{
-		int temp;
 		for(int x=1901; x<=2000; x++)
 		{
 			for(int d=1; d<=12; d++)
@@ -34,7 +33,7 @@ public class Euler19
 	}
 	public static void main(String[] args)
 	{
-		Euler19();
+		solve();
 		System.out.println(counter);
 		//System.out.println(day);
 	}

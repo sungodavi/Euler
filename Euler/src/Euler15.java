@@ -4,7 +4,6 @@ public class Euler15
 	public static long choose(int numerator, int denominator)
 	{
 		double ans =1;
-		int y = denominator-1;
 		for(int x=numerator; x > denominator; x--)
 		{
 			

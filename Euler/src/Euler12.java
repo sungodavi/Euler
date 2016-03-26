@@ -14,7 +14,7 @@ public class Euler12
 		return counter;
 	}
 	
-	public static long Euler12(int input)
+	public static long solve(int input)
 	{
 		int counter = 0, triangle = 2;;
 		long num = 1;
@@ -30,7 +30,7 @@ public class Euler12
 	
 	public static void main(String[] args)
 	{
-		long x = Euler12(500);
+		long x = solve(500);
 		System.out.println(x);
 	}
 	
