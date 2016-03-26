@@ -67,5 +67,20 @@ public class Methods
 	{
 		return Arrays.toString(a.toArray());
 	}
-
+	
+	public static int totient(int num)
+	{
+		ArrayList<Integer> sieve = sieve(num);
+		double ans = num;
+		for(int i = 0; sieve.get(i) <= num/2; i++)
+		{
+			int temp = sieve.get(i);
+			if(num % temp == 0)
+			{
+				ans *= temp-1;
+				ans /= temp;
+			}
+		}
+		return (int)ans;
+	}
 }
