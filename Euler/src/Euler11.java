@@ -1,4 +1,4 @@
-
+import java.util.*;
 public class Euler11 
 {
 	static int Grid [][] = {
