@@ -13,35 +13,31 @@ public class Euler58
 				return false;
 		return true;
 	}
-	
-	public static double getNums(int size)
+
+	public static int solve()
 	{
-		int num = 1;
+		double percent = 100;
+		int side = 1;
+		int corner = 1;
 		int count = 0;
-		int factor = 2;
-		int denom = 1;
-		for(int i = 3; i <= size; i+=2)
+		
+		
+		while(percent > 10)
 		{
-			for(int j = 1; j <= 4; j++)
+			side += 2;
+			for(int i = 1; i <= 4; i++)
 			{
-				denom++;
-				num += factor;
-				if(checkPrime(num))
-				{
+				corner += side - 1;
+				if(checkPrime(corner))
 					count++;
-				}
 			}
-			factor+=2;
+			percent = 100.0 * count/(2 * side - 1);
 		}
-		System.out.println(100.0 * count/denom);
-		return 100.0 * count/denom;
+		return side;
+				
 	}
-	
 	public static void main(String[] args)
 	{
-		int size = 7;
-		while(getNums(size) > 10)
-			size += 200;
-		System.out.println(size);
+		System.out.println(solve());
 	}
 }
