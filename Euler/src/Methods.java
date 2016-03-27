@@ -50,19 +50,30 @@ public class Methods
 		return Integer.parseInt(s);
 	}
 	
-	public static int[] toArray(int num)
+	public static int[] toArray(long num)
 	{
 		int[] a = new int[(int)Math.log10(num) + 1];
 		int index = 0;
 		while(num > 0)
 		{
-			a[index] = num%10;
+			a[index] = (int)num % 10;
 			num /= 10;
 			index++;
 		}
 		return a;
 	}
-	
+	public static int[] toArray(BigInteger num)
+	{
+		int[] a = new int[num.toString().length()];
+		int index = 0;
+		while(num.compareTo(BigInteger.ZERO) > 0)
+		{
+			a[index] = num.mod(BigInteger.TEN).intValue();
+			num = num.divide(BigInteger.TEN);
+			index++;
+		}
+		return a;
+	}
 	public static String toString(Collection a)
 	{
 		return Arrays.toString(a.toArray());
