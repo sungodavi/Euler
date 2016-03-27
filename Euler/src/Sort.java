@@ -139,7 +139,6 @@ public class Sort
 		for(int i = 0; i < a.length - 1; i++)
 		{
 			int small = 0;
-			int index = 0;
 			for(int j = i; j < a.length; j++)
 			{
 				if(a[j] < small)
