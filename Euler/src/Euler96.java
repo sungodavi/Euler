@@ -1,9 +1,10 @@
 import java.util.*;
+import java.io.*;
 public class Euler96 
 {
-	private static int[][] puzzle;
+	private int[][] puzzle;
 	@SuppressWarnings("unchecked")
-	private static ArrayList<Integer>[][] solutions = new ArrayList[9][9];
+	private ArrayList<Integer>[][] solutions = new ArrayList[9][9];
 	
 	public Euler96(int[][] matrix)
 	{
@@ -81,16 +82,18 @@ public class Euler96
 		}
 	}
 	
-	public static int check(int r, int c)
+	public int check(int r, int c)
 	{
 		if(puzzle[r][c] == 0)
 		{
+			if(solutions[r][c].size() == 1)
+				return solutions[r][c].get(0);
 			for(int index = 0; index < solutions[r][c].size(); index++)
 			{
 				Integer num = solutions[r][c].get(index);
 				boolean found;
 				
-				//check rows and columns
+				//check columns
 				found = true;
 				for(int i = 0; i < 9; i++)
 				{
@@ -102,6 +105,16 @@ public class Euler96
 							break;
 						}
 					}
+				}
+	
+				if(found)
+					return (int)num;
+				
+				
+				//check rows
+				found = true;
+				for(int i = 0; i < 9; i++)
+				{
 					if(i != c)
 					{
 						if(solutions[r][i].contains(num))
@@ -163,12 +176,10 @@ public class Euler96
 				}
 			}
 		}
+		//if(!(complete || change))
+			//bruteForce(brutePuzzle,solutions,0,0);
 	}
 	
-	public void bruteForce()
-	{
-		
-	}
 	public void display()
 	{
 		for(int r = 0; r < 9; r++)
@@ -186,7 +197,7 @@ public class Euler96
 				System.out.println();
 		}
 	}
-	
+
 	public void showSolutions()
 	{
 		System.out.println();
@@ -200,50 +211,50 @@ public class Euler96
 		}
 	}
 	
-	public static void main(String[] args)
+	public boolean complete()
 	{
-		int[][]matrix1 = {{0,0,3,0,2,0,6,0,0},
-						 {9,0,0,3,0,5,0,0,1},
-						 {0,0,1,8,0,6,4,0,0},
-						 {0,0,8,1,0,2,9,0,0},
-						 {7,0,0,0,0,0,0,0,0},
-						 {0,0,6,7,0,8,2,0,0},
-						 {0,0,2,6,0,9,5,0,0},
-						 {8,0,0,2,0,3,0,0,9},
-						 {0,0,5,0,1,0,3,0,0}};
-		int[][] matrix2 = {{2,0,0,0,8,0,3,0,0},
-						  {0,6,0,0,7,0,0,8,4},
-						  {0,3,0,5,0,0,2,0,9},
-						  {0,0,0,1,0,5,4,0,8},
-						  {0,0,0,0,0,0,0,0,0},
-						  {4,0,2,7,0,6,0,0,0},
-						  {3,0,1,0,0,7,0,4,0},
-						  {7,2,0,0,4,0,0,6,0},
-						  {0,0,4,0,1,0,0,0,3}};
-		
-		int[][] matrix3 = {{0,0,0,0,0,0,9,0,7},
-						  {0,0,0,4,2,0,1,8,0},
-						  {0,0,0,7,0,5,0,2,6},
-						  {1,0,0,9,0,4,0,0,0},
-						  {0,5,0,0,0,0,0,4,0},
-						  {0,0,0,5,0,7,0,0,9},
-						  {9,2,0,1,0,8,0,0,0},
-						  {0,3,4,0,5,9,0,0,0},
-						  {5,0,7,0,0,0,0,0,0}};
-		
-		Euler96 puzzle = new Euler96(matrix1);
-		puzzle.display();
-		puzzle.solve();
-		System.out.println();
-		puzzle.display();
-		System.out.println();
-		
-		Euler96 puzzle3 = new Euler96(matrix3);
-		puzzle.display();
-		puzzle.solve();
-		System.out.println();
-		puzzle.display();
-		puzzle.showSolutions();
+		for(int r = 0; r < 9; r++)
+			for(int c = 0; c < 9; c++)
+				if(puzzle[r][c] == 0)
+					return false;
+		return true;
+	}
+	public int getCorner()
+	{
+		return 100 * puzzle[0][0] + 10 * puzzle[0][1] + puzzle[0][2];
+	}
+	
+	public static void main(String[] args) throws IOException
+	{
+		int sum = 0;
+		Scanner scan = new Scanner(new File("96.txt"));
+		while(scan.hasNext())
+		{
+			int[][] matrix = new int[9][9];
+			scan.nextLine();
+			for(int i = 0; i < 9; i++)
+			{
+				String s = scan.nextLine();
+				for(int j = 0; j < 9; j++)
+				{
+					matrix[i][j] = s.charAt(j) - '0';
+				}
+			}
+			
+			Euler96 puzzle = new Euler96(matrix);
+			//puzzle.display();
+			puzzle.solve();
+			//System.out.println();
+			puzzle.display();
+			System.out.println();
+			if(!puzzle.complete())
+			{
+				puzzle.showSolutions();
+				break;
+			}
+			sum += puzzle.getCorner();
+		}
+		System.out.println(sum);
 		
 	}
 
