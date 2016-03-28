@@ -19,11 +19,11 @@ public class Euler67
 				}
 				count ++;
 			}
-			
+			scan.close();
 			return ans;
 	}
 	
-	public static int Euler67(int[][] array)
+	public static int solve(int[][] array)
 	{
 		for(int x = array.length - 2; x >= 0 ; x--)
 		{
@@ -52,7 +52,7 @@ public class Euler67
 	{
 		int[][] make = make(100);
 		display(make);
-		int ans = Euler67(make);
+		int ans = solve(make);
 		System.out.println(ans);
 	}
 }
