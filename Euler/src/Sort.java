@@ -32,7 +32,26 @@ public class Sort
 		a[y] = temp;
 		return a;
 	}
+	public static long[] swap(long[] a, int x, int y)
+	{
+		long temp = a[x];
+		a[x] = a[y];
+		a[y] = temp;
+		return a;
+	}
 	public static int[] sort(int[] a)
+	{
+		for(int i = 1; i < a.length; i++)
+		{
+			for(int j = i; j > 0; j--)
+			{
+				if(a[j] < a[j-1])
+					a = swap(a,j,j-1);
+			}
+		}
+		return a;
+	}
+	public static long[] sort(long[] a)
 	{
 		for(int i = 1; i < a.length; i++)
 		{
