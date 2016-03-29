@@ -7,9 +7,8 @@ public class Methods
 	public static int Euclid(int x, int y)
 	{
 		if(y == 0)
-		{
 			return x;
-		}
+		
 		else 
 			return Euclid(y, x%y);
 	}
