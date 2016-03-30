@@ -1,136 +1,120 @@
 import java.util.*;
 public class Euler54 
 {
-	private char[][] player1 = new char[2][5];
-	private char[][] player2 = new char[2][5];
-	private int score1 = 0;
-	private int score2 = 0;
-	private Map suit = new HashMap();
-	private Map face = new HashMap();	
-	private int[] player1Suit = new int[5];
-	private int[] player1Face = new int[5];
-	private int[] player2Suit = new int[5];
-	private int[] player2Face = new int[5];
+	public static Map suit = new HashMap();
+	public static char[][] cards;
+	public static Map faces = new HashMap();
+	public static int[] f = new int[5];
+	public static int[] s = new int[5];
 	
-	public Euler54(String input)
+	public Euler54(String hand)
 	{
-		String[] array = input.split(" ");
+		String[] temp = hand.split(" ");
+		loadMaps();
 		for(int i = 0; i < 5; i++)
 		{
-			player1[0][i] = array[i].charAt(0);
-			player1[1][i] = array[i].charAt(1);
-			player2[0][i] = array[i + 5].charAt(0);
-			player2[1][i] = array[i + 5].charAt(1);
+			cards[0][i] = temp[i].charAt(0);
+			f[i] = (int)faces.get(temp[i].charAt(0));
+			cards[1][i] = temp[i].charAt(1);
+			s[i] = (int)faces.get(temp[i].charAt(1));
 		}
-		suit.put('H', 0);
-		suit.put('D', 1);
-		suit.put('C', 2);
-		suit.put('S', 3);
+		Arrays.sort(f);
+		Arrays.sort(s);
+	}
+	
+	public void loadMaps()
+	{
+		suit.put('H',1);
+		suit.put('D', 2);
+		suit.put('C',3);
+		suit.put('S',4);
+		
 		for(char i = '2'; i <= '9'; i++)
 		{
-			face.put(i, i-'0');
+			faces.put(i, i - '0');
 		}
-		face.put('T', 10);
-		face.put('J',11);
-		face.put('J',12);
-		face.put('Q',12);
-		face.put('K',13);
-		face.put('A',14);
-		for(int i = 0; i < 5; i++)
+		faces.put('T', 10);
+		faces.put('J', 11);
+		faces.put('Q', 12);
+		faces.put('K', 13);
+		faces.put('A',14);
+	}
+	
+	//returns high card
+	public int checkFlush()
+	{
+		for(int i = 0; i < 4; i++)
 		{
-			player1Suit[i] = (int)suit.get(player1[1][i]);
-			player1Face[i] = (int)face.get(player1[0][i]);
-			player2Suit[i] = (int)suit.get(player2[1][i]);
-			player2Face[i] = (int)face.get(player2[0][i]);
+			if(s[i] != s[i+1])
+				return 0;
 		}
-		Sort.sort(player1Face);
-		Sort.sort(player2Face);
+		return f[4];
+	}
+	//returns high card
+	public int checkStraightFlush()
+	{
+		if(checkFlush() == 0)
+			return 0;
+		return straight();
 	}
 	public int checkRoyalFlush()
 	{
-		Sort.sort(player1Face);
-		Sort.sort(player2Face);
-		boolean p1Score = true;
-		boolean p2Score = true;
-		for(int i = 0; i < 4; i++)
-		{
-			if(player1Suit[i] != player1Suit[i+1])
-			{
-				p1Score = false;
-			}
-			if(player2Suit[i] != player2Suit[i+1])
-			{
-				p2Score = false;
-			}
-		}
-		if(!(p1Score || p2Score))
+		if(checkStraightFlush() == 0)
 			return 0;
-		for(int i = 10; i <= 14; i++)
-		{
-			if(player1Suit[i-10] != i)
-				p1Score = false;
-			if(player2Suit[i-10] != i)
-				p2Score = false;
-		}
-		if(!(p1Score || p2Score))
-			return 0;
-		else if(p1Score && !p2Score)
-			return 1;
-		return -1;
+		if(f[0] == 10)
+			return f[4];
+		return 0;			
 	}
-	
-	public int checkFlush()
+	public int straight()
 	{
-		
-		boolean p1Score = true;
-		boolean p2Score = true;
 		for(int i = 0; i < 4; i++)
 		{
-			if(player1Suit[i] != player1Suit[i+1])
-			{
-				p1Score = false;
-			}
-			if(player2Suit[i] != player2Suit[i+1])
-			{
-				p2Score = false;
-			}
+			if(f[i] + 1 != f[i + 1])
+				return 0;
 		}
-		System.out.println(p1Score + " " + p2Score);
-		if(!(p1Score || p2Score))
-			return 0;
-		for(int i = 0; i < 4; i++)
-		{
-			if(player1Suit[i] + 1 != player1Suit[i+1])
-				p1Score = false;
-			if(player2Suit[i] + 1!= player2Suit[i+1])
-				p2Score = false;
-		}
-		if(!(p1Score || p2Score))
-			return 0;
-		else if(p1Score && !p2Score)
-			return 1;
-		return -1;
+		return f[4];
+	}
+	public int highCard()
+	{
+		return f[4];
 	}
 	
 	public int fourOfAKind()
 	{
-		boolean p1Score = false,p2Score = false;
-		if(player1Face[1] == player1Face[2] && player1Face[2] == player1Face[3] && (player1Face[0] == player1Face[1] || player1Face[3] == player1Face[4]))
-			p1Score = true;
-		if(player2Face[1] == player2Face[2] && player2Face[2] == player2Face[3] && (player2Face[0] == player2Face[1] || player2Face[3] == player2Face[4]))
-			p2Score = true;
-		if(p1Score == p2Score)
-			return 0;
-		if(p1Score && !p2Score)
-			return 1;
-		return -1;
-		
+		if(f[1] == f[2] && f[2] == f[3] && (f[0] == f[1] || f[3] == f[4]))
+			return f[2];
+		return 0;
 	}
+	
+	public int[] pairs()
+	{
+		int[] array = new int[2];
+		int index = 0;
+		for(int i = 0; i < 4; i++)
+		{
+			if(f[i] == f[i+1])
+			{
+				array[index] = f[i];
+				i++;
+				index++;
+			}
+		}
+		return array;
+	}
+	
+	public int threeOfAKind()
+	{
+		for(int i = 0; i < 3; i++)
+		{
+			if(f[i] == f[i+1] && f[i+1] == f[i+2])
+				return f[i];
+		}
+		return 0;
+	}
+	
 	public static void main(String[] args)
 	{
-		String test = "2D 9C AS AH AC 3D 6D 7D TD QD";
-		Euler54 hand = new Euler54(test);
-		System.out.println(hand.checkFlush());
+		String test = 
 	}
 	
 }
