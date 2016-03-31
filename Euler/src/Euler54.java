@@ -1,11 +1,12 @@
 import java.util.*;
+import java.io.*;
 public class Euler54 
 {
-	public static Map suit = new HashMap();
-	public static char[][] cards;
-	public static Map faces = new HashMap();
-	public static int[] f = new int[5];
-	public static int[] s = new int[5];
+	private Map suit = new HashMap();
+	private char[][] cards = new char[2][5];
+	private Map faces = new HashMap();
+	private int[] f = new int[5];
+	private int[] s = new int[5];
 	
 	public Euler54(String hand)
 	{
@@ -16,12 +17,19 @@ public class Euler54
 			cards[0][i] = temp[i].charAt(0);
 			f[i] = (int)faces.get(temp[i].charAt(0));
 			cards[1][i] = temp[i].charAt(1);
-			s[i] = (int)faces.get(temp[i].charAt(1));
+			s[i] = (int)suit.get(temp[i].charAt(1));
 		}
 		Arrays.sort(f);
 		Arrays.sort(s);
 	}
-	
+	public int[] getF()
+	{
+		return f;
+	}
+	public int[] getS()
+	{
+		return s;
+	}
 	public void loadMaps()
 	{
 		suit.put('H',1);
@@ -112,9 +120,26 @@ public class Euler54
 		return 0;
 	}
 	
-	public static void main(String[] args)
+	public int fullHouse()
 	{
-		String test;
+		if(f[0] == f[1] && f[3] == f[4] && (f[1] == f[2] || f[2] == f[3]))
+			return f[2];
+		return 0;
+	}
+	
+	public static void main(String[] args) throws IOException
+	{
+		int count = 0;
+		Scanner scan = new Scanner(new File("54.txt"));
+		while(scan.hasNext())
+		{
+			String s = scan.nextLine();
+			Euler54 p1 = new Euler54(s.substring(0,14));
+			Euler54 p2 = new Euler54(s.substring(15));
+			if(Poker.winner(p1,p2))
+				count++;
+		}
+		System.out.println(count);
 	}
 	
 }
