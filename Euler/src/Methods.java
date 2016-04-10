@@ -7,26 +7,41 @@ public class Methods
 	private static final BigDecimal SQRT_PRE = new BigDecimal(10).pow(SQRT_DIG.intValue());
 	 
 	private static BigDecimal sqrtNewtonRaphson  (BigDecimal c, BigDecimal xn, BigDecimal precision)
+	{
+		BigDecimal fx = xn.pow(2).add(c.negate());
+		BigDecimal fpx = xn.multiply(new BigDecimal(2));
+		BigDecimal xn1 = fx.divide(fpx,2*SQRT_DIG.intValue(),RoundingMode.HALF_DOWN);
+		xn1 = xn.add(xn1.negate());
+		//----
+		BigDecimal currentSquare = xn1.pow(2);
+		BigDecimal currentPrecision = currentSquare.subtract(c);
+		currentPrecision = currentPrecision.abs();
+		if ( currentPrecision.compareTo(precision) <= -1 )
 		{
-			BigDecimal fx = xn.pow(2).add(c.negate());
-			BigDecimal fpx = xn.multiply(new BigDecimal(2));
-			BigDecimal xn1 = fx.divide(fpx,2*SQRT_DIG.intValue(),RoundingMode.HALF_DOWN);
-			xn1 = xn.add(xn1.negate());
-			//----
-			BigDecimal currentSquare = xn1.pow(2);
-			BigDecimal currentPrecision = currentSquare.subtract(c);
-			currentPrecision = currentPrecision.abs();
-			if ( currentPrecision.compareTo(precision) <= -1 )
-			{
-				return xn1;
-			}
-			return sqrtNewtonRaphson(c, xn1,precision);
+			return xn1;
 		}
+		return sqrtNewtonRaphson(c, xn1,precision);
+	}
 		
-		public static BigDecimal sqrt(BigDecimal c)
-		{
-			return sqrtNewtonRaphson(c,new BigDecimal(1),new BigDecimal(1).divide(SQRT_PRE));
-		}
+	public static BigDecimal sqrt(BigDecimal c)
+	{
+		return sqrtNewtonRaphson(c,new BigDecimal(1),new BigDecimal(1).divide(SQRT_PRE));
+	}
+	
+	public static BigInteger sqrt(BigInteger x) 
+	{
+	    BigInteger div = BigInteger.ZERO.setBit(x.bitLength()/2);
+	    BigInteger div2 = div;
+	    // Loop until we hit the same value twice in a row, or wind
+	    // up alternating.
+	    for(;;) {
+	        BigInteger y = div.add(x.divide(div)).shiftRight(1);
+	        if (y.equals(div) || y.equals(div2))
+	            return y;
+	        div2 = div;
+	        div = y;
+	    }
+	}
 		
 	//add sort algorithm
 	public static int Euclid(int x, int y)
@@ -66,23 +81,66 @@ public class Methods
 		return sieve;
 	}
 	
+	public static boolean checkPrime(long num)
+	{
+		if(num < 2)
+			return false;
+		if(num == 2)
+			return true;
+		if(num % 2 == 0)
+			return false;
+		for(int i = 3; i <= Math.sqrt(num); i += 2)
+		{
+			if(num % i == 0)
+				return false;
+		}
+		return true;
+	}
+	public static ArrayList<Integer> sieve(int start, int end)
+	{
+		boolean ans[] = new boolean[end + 1];
+		ArrayList<Integer> sieve = new ArrayList<Integer>();
+		Arrays.fill(ans, true);
+		for(int i = 0; i < start; i++)
+		{
+			ans[i] = false;
+		}
+		for(int i = 2; i<= Math.ceil(Math.sqrt(end)); i++)
+		{
+			for(int j = i*2; j <= end; j += i)
+			{
+				ans[j] = false;
+			}
+		}
+		
+		for(int i = 0; i < ans.length; i++)
+		{
+			if(ans[i])
+				sieve.add(i);
+		}
+		return sieve;
+	}
 	public static int toInt(int[] array)
 	{
 		String s = "";
-		for(int i = array.length -1; i >= 0; i--)
+		for(int i = 0; i < array.length; i++)
 			s += array[i];
 		return Integer.parseInt(s);
 	}
 	
+	public static int getLength(long num)
+	{
+		return (int)Math.log10(num) + 1;
+	}
 	public static int[] toArray(long num)
 	{
 		int[] a = new int[(int)Math.log10(num) + 1];
-		int index = 0;
+		int index = a.length - 1;
 		while(num > 0)
 		{
 			a[index] = (int)num % 10;
 			num /= 10;
-			index++;
+			index--;
 		}
 		return a;
 	}
@@ -123,5 +181,23 @@ public class Methods
 	{
 		long sqrt = (long)Math.sqrt(num);
 		return sqrt * sqrt == num;
+	}
+	
+	public static int[] swap(int[] a,int x,int y)
+	{
+		int temp = a[x];
+		a[x] = a[y];
+		a[y] = temp;
+		return a;
+	}
+	
+	public static long fact(long num)
+	{
+		long ans = 1;
+		for(int i = 2; i <= num; i++)
+		{
+			ans *= i;
+		}
+		return ans;
 	}
 }

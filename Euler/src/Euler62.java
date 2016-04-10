@@ -1,70 +1,87 @@
-import java.util.Arrays;
+import java.util.*;
 public class Euler62 
 {
 	
-	public static int[] toArray(int num)
+	public static boolean checkCube(long num)
 	{
-		int[] array= new int[(int)Math.log10(num) + 1];
-		for(int x = 0; x < array.length; x++)
+		for(int i = (int) (Math.cbrt(num) - 10); i <= Math.cbrt(num) + 10; i++)
 		{
-			array[x] = num % 10;
-			num /= 10;
+			if(i * i * i == num)
+				return true;
 		}
-		return array;
+		return false;
 	}
 	
-	public static int toInt(int[] array)
+	public static int permutations(long num)
 	{
-		String temp = "";
-		for(int x = 0; x< array.length; x++)
+		int cubes = 0;
+		int[] a = Methods.toArray(num);
+		int divide = 1;
+		int len = Methods.getLength(num);
+		Sort.sort(a);
+		for(int i = 0; i <= 9; i++)
 		{
-			temp += array[x] + "";
+			int count = 0;
+			for(int j = 0; j < a.length; j++)
+			{
+				if(a[j]  == i)
+					count++;
+			}
+			if(count != 0)
+				divide *= Methods.fact(count);
 		}
-		return Integer.parseInt(temp);
+		System.out.println(divide);
+		for(int x = 1; x < Methods.fact(Methods.getLength(num))/divide; x++)
+		{
+			int j = a.length - 2;
+			int l = j + 1;
+			while(j > 0 && a[j] >= a[j + 1])
+				j--;
+		
+			while(l > 0 && a[l] <= a[j])
+				l--;
+		
+			a = Methods.swap(a,j,l);
+			
+			int k = j + 1;
+			l = a.length - 1;
+			while(k < l)
+			{
+				Methods.swap(a,k,l);
+				k++;
+				l--;
+			}
+			
+			
+			if(checkCube(Methods.toInt(a)))
+			{
+				if(Methods.getLength(Methods.toInt(a)) == len)
+				{
+					System.out.println(Methods.toInt(a));
+					cubes++;
+				}
+			}
+			
+		
+		}
+		return cubes;
 	}
 	
-	public static int[] swap(int[] a, int x, int y)
+	
+	public static long solve()
 	{
-		int temp = a[x];
-		a[x] = a[y];
-		a[y] = temp;
-		return a;
-	}
-	
-	public static void permutations(int num)
-	{
-		
-		int[] a = toArray(num);
-		Arrays.sort(a);
-		for(int x = 0; x < 24; x++)
+		int i = 346;
+		while(true)
 		{
-		int j = a.length - 2;
-		int l = j + 1;
-		while(j > 0 && a[j] >= a[j + 1])
-			j--;
-		
-		while(l > 0 && a[l] <= a[j])
-			l--;
-		
-		a = swap(a,j,l);
-		
-		int k = j + 1;
-		l = a.length - 1;
-		while(k < l)
-		{
-			swap(a,k,l);
-			k++;
-			l--;
+			if(permutations(i * i * i) == 5)
+				return i * i * i;
+			i++;
 		}
-	
-		System.out.println(toInt(a));
-		}
-		
 	}
-	
 	public static void main(String[] args)
 	{
-		permutations(1234);
+		System.out.println(solve());
+		//System.out.println(permutations(125000000));
 	}
 
 }
