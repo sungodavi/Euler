@@ -128,9 +128,23 @@ public class Methods
 		return Integer.parseInt(s);
 	}
 	
+	
+	public static long toLong(int[] array)
+	{
+		String s = "";
+		for(int i = 0; i < array.length; i++)
+			s += array[i];
+		return Long.parseLong(s);
+	}
+	
 	public static int getLength(long num)
 	{
 		return (int)Math.log10(num) + 1;
+	}
+	
+	public static int getLength(BigInteger num)
+	{
+		return num.toString().length();
 	}
 	public static int[] toArray(long num)
 	{
@@ -147,12 +161,12 @@ public class Methods
 	public static int[] toArray(BigInteger num)
 	{
 		int[] a = new int[num.toString().length()];
-		int index = 0;
+		int index = a.length - 1;
 		while(num.compareTo(BigInteger.ZERO) > 0)
 		{
 			a[index] = num.mod(BigInteger.TEN).intValue();
 			num = num.divide(BigInteger.TEN);
-			index++;
+			index--;
 		}
 		return a;
 	}
