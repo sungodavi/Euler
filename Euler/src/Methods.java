@@ -1,5 +1,4 @@
 import java.util.*;
-import java.math.BigInteger;
 import java.math.*;
 public class Methods 
 {
@@ -42,15 +41,27 @@ public class Methods
 	        div = y;
 	    }
 	}
-		
-	//add sort algorithm
-	public static int Euclid(int x, int y)
+	
+	public static long gcd(long x, long y)
 	{
-		if(y == 0)
-			return x;
-		
-		else 
-			return Euclid(y, x%y);
+		while(y != 0)
+		{
+			long temp = x;
+			x = y;
+			y = temp % y;
+		}
+		return x;
+	}
+	
+	public static BigInteger gcd(BigInteger x, BigInteger y)
+	{
+		while(!y.equals(BigInteger.ZERO))
+		{
+			BigInteger temp = x.add(BigInteger.ZERO);
+			x = y.add(BigInteger.ZERO);
+			y = temp.mod(y);
+		}
+		return x;
 	}
 	
 	public static BigInteger convert(long num)
@@ -158,6 +169,28 @@ public class Methods
 		}
 		return a;
 	}
+	
+	public static BigInteger[] toFraction(double d)
+	{
+		BigInteger num = BigInteger.ONE;
+		BigInteger denom = BigInteger.ONE;
+		BigDecimal decimal = BigDecimal.valueOf(d);
+		String temp = decimal + "";
+		int index = temp.length() - temp.indexOf(".") - 1;
+
+		
+		decimal = decimal.multiply(BigDecimal.TEN.pow(index));
+		denom = denom.multiply(BigInteger.TEN.pow(index));
+
+		num = decimal.toBigInteger();
+		BigInteger gcd = Methods.gcd(num,denom);
+		num = num.divide(gcd);
+		denom = denom.divide(gcd);
+		
+		BigInteger[] array = {num,denom};
+		return array;
+	}
+	
 	public static int[] toArray(BigInteger num)
 	{
 		int[] a = new int[num.toString().length()];
