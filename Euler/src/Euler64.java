@@ -1,29 +1,29 @@
-import java.math.*;
 import java.util.*;
+import java.math.*;
 public class Euler64 
 {
 	
-	public static int continuedFraction(int input)
+	public static void continuedFraction(int num)
 	{
-		BigDecimal sqrt = BigDecimal.valueOf(input);
-		long aN = Methods.sqrt(sqrt).toBigInteger().longValue();
-		int numerator = 1;
+		BigDecimal sqrt = Methods.sqrt(BigDecimal.valueOf(num));
 		Queue<Long> a = new LinkedList<Long>();
+		Set<BigDecimal> sequence = new HashSet();
+		long aN = 0;
+		
+		
+		while(sequence.add(sqrt))
+		{
+			aN = sqrt.toBigInteger().longValue();
+			a.add(aN);
+			sqrt = BigDecimal.ONE.divide(sqrt.subtract(BigDecimal.valueOf(aN)),20,BigDecimal.ROUND_HALF_DOWN);
+			System.out.println(aN);
+		}
+		
 	}
 	
 	public static void main(String[] args)
 	{
-		int count = 0;
-		
-		for(int i = 2; i <= 5; i++)
-		{
-			if(!Methods.isPerfectSquare(i))
-			{
-				System.out.println(continuedFraction(i));
-				if(continuedFraction(i) % 2 != 0)
-					count++;
-			}
-		}
+		continuedFraction(23);
 	}
-}
 
+}
