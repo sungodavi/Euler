@@ -2,6 +2,7 @@ import java.util.*;
 import java.math.*;
 public class Euler64 
 {
+<<<<<<< HEAD
 	
 	public static void continuedFraction(int num)
 	{
@@ -24,6 +25,11 @@ public class Euler64
 	public static void main(String[] args)
 	{
 		continuedFraction(23);
+=======
+	public static void continuedFraction(double sqrt)
+	{
+		
+>>>>>>> b8aafd0305369e7c872731a7b0710d285bce7fca
 	}
 
 }
