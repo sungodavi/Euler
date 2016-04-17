@@ -230,13 +230,6 @@ public class Methods
 		return sqrt * sqrt == num;
 	}
 	
-	public static int[] swap(int[] a,int x,int y)
-	{
-		int temp = a[x];
-		a[x] = a[y];
-		a[y] = temp;
-		return a;
-	}
 	
 	public static long fact(long num)
 	{
@@ -246,5 +239,37 @@ public class Methods
 			ans *= i;
 		}
 		return ans;
+	}
+	
+	public static int[][] primeFactorization(long num)
+	{
+		ArrayList<Integer> sieve = sieve((int)Math.sqrt(num) + 1);
+		System.out.println(toString(sieve));
+		int size = 0;
+		for(int i = 0; i < sieve.size(); i++)
+		{
+			if(num % sieve.get(i) == 0)
+				size++;
+		}
+		int[][] a = new int[size][2];
+		int index = 0;
+		for(int i = 0 ; i < sieve.size(); i++)
+		{
+			int exp = 0;
+			int base = sieve.get(i);
+			while(num % base == 0)
+			{
+				num /= base;
+				exp++;
+			}
+			if(exp != 0)
+			{
+				System.out.println(base + "^" + exp);
+				a[index][0] = base;
+				a[index][1] = exp;
+				index++;
+			}
+		}
+		return a;
 	}
 }
