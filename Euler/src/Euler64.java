@@ -2,34 +2,38 @@ import java.util.*;
 import java.math.*;
 public class Euler64 
 {
-<<<<<<< HEAD
-	
-	public static void continuedFraction(int num)
+	public static int continuedFraction(int num)
 	{
-		BigDecimal sqrt = Methods.sqrt(BigDecimal.valueOf(num));
-		Queue<Long> a = new LinkedList<Long>();
-		Set<BigDecimal> sequence = new HashSet();
-		long aN = 0;
-		
-		
-		while(sequence.add(sqrt))
+		int denominator = 1;
+		int a = 0;
+		int target = (int)(Math.sqrt(num));
+		int count = 0;
+		do
 		{
-			aN = sqrt.toBigInteger().longValue();
-			a.add(aN);
-			sqrt = BigDecimal.ONE.divide(sqrt.subtract(BigDecimal.valueOf(aN)),20,BigDecimal.ROUND_HALF_DOWN);
-			System.out.println(aN);
-		}
+			int temp = denominator;
+			a -= (int)((Math.sqrt(num) + a)/denominator) * denominator;
+			denominator = (num - a * a)/temp;
+			a *= -1;
+			count++;
+		}while(a != target || denominator != 1);
+		
+		return count;
 		
 	}
 	
 	public static void main(String[] args)
 	{
-		continuedFraction(23);
-=======
-	public static void continuedFraction(double sqrt)
-	{
-		
->>>>>>> b8aafd0305369e7c872731a7b0710d285bce7fca
+		int count = 0;
+		for(int i = 2; i <= 10000; i++)
+		{
+			if(!Methods.isPerfectSquare(i))
+			{
+				int period = continuedFraction(i);
+				if(period % 2 != 0)
+					count++;
+			}
+		}
+		System.out.println("the continued fractions of square roots <= 10,000 is odd " + count + " times.");
 	}
 
 }
