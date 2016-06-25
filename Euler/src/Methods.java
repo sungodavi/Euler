@@ -244,7 +244,6 @@ public class Methods
 	public static int[][] primeFactorization(long num)
 	{
 		ArrayList<Integer> sieve = sieve((int)Math.sqrt(num) + 1);
-		System.out.println(toString(sieve));
 		int size = 0;
 		for(int i = 0; i < sieve.size(); i++)
 		{

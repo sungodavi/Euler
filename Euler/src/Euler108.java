@@ -2,59 +2,37 @@
 import java.util.*;
 public class Euler108 
 {
-	public static ArrayList<Integer> sieve(int num)
+	public static int countSquareDivisors(int num)
 	{
-		boolean ans[] = new boolean[num + 1];
-		ArrayList<Integer> sieve = new ArrayList<Integer>();
-		Arrays.fill(ans, true);
-		ans[0] = false;
-		ans[1] = false;
-		for(int i = 2; i<= Math.ceil(Math.sqrt(num)); i++)
+		int count = 1;
+		ArrayList<Integer> sieve = Methods.sieve(num);
+		for(Integer i: sieve)
 		{
-			for(int j = i*2; j <= num; j += i)
+			int exp = 0;
+			while(num % i == 0)
 			{
-				ans[j] = false;
+				exp++;
+				num /= i;
 			}
+			count*= 2*exp+1;
 		}
-		
-		for(int i = 0; i < ans.length; i++)
-			if(ans[i])
-				sieve.add(i);
-		
-		return sieve;				
+		return count;
+	}
+	public static int getSolutions(int n)
+	{
+		return (countSquareDivisors(n)+1)/2;
 	}
 	
-	public static int getDivisors(int num)
-	{
-		int ans = 1;
-		int[] a = new int[num+1];
-		ArrayList<Integer> sieve = sieve(num);
-		for(int i = 0; i < sieve.size() && num > 0; i++)
-		{
-			int temp = sieve.get(i);
-			while(num % temp == 0)
-			{
-				num /= temp;
-				a[temp]++;
-			}
-				
-		}
-		for(int i = 0; i < a.length; i++)
-			ans *= 2*a[i] + 1;
-		ans++;
-		return ans/2;
-	}
-	
-	public static long solve(int limit)
-	{
-		int n = 4;
-		while(getDivisors(n) < limit)
-			n++;
-		
-		return n;
-	}
 	public static void main(String[] args)
 	{
-		System.out.println(solve(1000));
+		int n = 4;
+		int ans = 0;
+		while(ans < 1000)
+		{
+			ans = getSolutions(n);
+			System.out.println(n + " " + ans);
+			n++;
+		}
+		System.out.println(n - 1);
 	}
 }
