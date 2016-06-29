@@ -219,11 +219,17 @@ public class Euler96
 					return false;
 		return true;
 	}
+	
 	public int getCorner()
 	{
 		return 100 * puzzle[0][0] + 10 * puzzle[0][1] + puzzle[0][2];
 	}
 	
+	public static void backTrace()
+	{
+		
+	}
+
 	public static void main(String[] args) throws IOException
 	{
 		int sum = 0;

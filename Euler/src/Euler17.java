@@ -17,13 +17,11 @@ public class Euler17
 			if(temp == 1000)
 			{
 				count += thousand;
-				//System.out.println("thousand " + count);
 				return count;
 			}
 			else if(temp > 100)
 			{
 				count += hundred + ones[temp/100] + 3;
-				//System.out.println("101 + " + count);
 				temp %= 100;
 			}
 			else if(temp == 100)
@@ -31,13 +29,11 @@ public class Euler17
 			else if(temp >= 20)
 			{
 				count += tens2[temp/10 -2];
-				//System.out.println("20-99 " + count);
 				temp %= 10;
 			}
 			else if(temp >= 10)
 			{
 				count += tens[temp % 10];
-				//System.out.println("10-19 " + count);
 				return count;
 			}
 			else
@@ -52,11 +48,9 @@ public class Euler17
 	
 	public static long solve()
 	{
-		for(int x=1; x<= 1000; x++)
-		{
+		for(int x = 1; x <= 1000; x++)
 			counter += convert(x);
-			System.out.println(counter);
-		}
+
 		return counter;
 	}
 	public static void main(String[] args)

@@ -4,7 +4,7 @@ public class Euler8
 	{
 		long ans = 0;
 		long temp = 1;
-		for(int x=0; x< s.length() - 13; x++)
+		for(int x = 0; x < s.length() - 13; x++)
 		{
 			temp = 1;
 			for(int y=x; y< x + 13; y ++)

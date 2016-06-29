@@ -131,6 +131,7 @@ public class Methods
 		}
 		return sieve;
 	}
+	
 	public static int toInt(int[] array)
 	{
 		String s = "";

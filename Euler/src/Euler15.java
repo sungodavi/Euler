@@ -9,7 +9,7 @@ public class Euler15
 			
 			ans *= x;
 			if(numerator-denominator != 0)
-				ans/= x-denominator;
+				ans /= x-denominator;
 		}
 		return (long)(ans);
 	}

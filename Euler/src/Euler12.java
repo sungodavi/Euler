@@ -16,12 +16,11 @@ public class Euler12
 	
 	public static long solve(int input)
 	{
-		int counter = 0, triangle = 2;;
+		int counter = 0, triangle = 2;
 		long num = 1;
 		while(counter < input)
 		{
 			counter = findFactors(num);
-			System.out.println(counter);
 			num += triangle;
 			triangle ++;
 		}

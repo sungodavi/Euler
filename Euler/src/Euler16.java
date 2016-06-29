@@ -8,7 +8,6 @@ public class Euler16
 		long sum = 0;
 		BigInteger num = new BigInteger("2");
 		num = num.pow(1000);
-		System.out.println(num);
 		String s = num.toString();
 		for(int x=0; x < s.length(); x++)
 		{

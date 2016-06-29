@@ -6,11 +6,11 @@ public class Euler70
 	//Euler's Totient Function
 	//Finds # of relatively prime numbers compared to num
 	
-	public static double totient(int num)
+	public static int totient(int num)
 	{
 		ArrayList<Integer> sieve = Methods.sieve(num);
-		double ans = 1;
-		for(int i = 0; sieve.get(i) <= num/2; i++)
+		long ans = num;
+		for(int i = 0; i < sieve.size(); i++)
 		{
 			int temp = sieve.get(i);
 			if(num % temp == 0)
@@ -19,39 +19,54 @@ public class Euler70
 				ans /= temp;
 			}
 		}
-		return ans;
+		return (int)ans;
 	}
 	
 	public static boolean checkPerm(int a, int b)
 	{
-		int[] aArray = Methods.toArray(a);
-		int[] bArray = Methods.toArray(b);
-		Sort.sort(aArray);
-		Sort.sort(bArray);
-		if(Arrays.equals(aArray, bArray))
-			return true;
-		return false;
+		if(Methods.getLength(a) != Methods.getLength(b))
+			return false;
+		int[][] array = new int[2][Methods.getLength(a)];
+		int[] tempA = Methods.toArray(a);
+		int[] tempB = Methods.toArray(b);
+		Sort.sort(tempA);
+		Sort.sort(tempB);
+		array[0] = tempA;
+		array[1] = tempB;
+		for(int i = 0; i < array[0].length; i++)
+		{
+			if(array[0][i] != array[1][i])
+				return false;
+		}
+		return true;
 	}
 	
-	public static void main(String[] args)
+	public static int solve()
 	{
 		double max = Double.MAX_VALUE;
-		double ans = 0;
-		int num = 100;
-		while(num < 10000000)
+		int ans = 123;
+		ArrayList<Integer> sieve = Methods.sieve(2000,5000);
+		for(int i = 0; i < sieve.size() - 1; i++)
 		{
-			double phi = 1.0 / totient(num);
-			System.out.println(num + " " + phi);
-			if(checkPerm(num,Methods.totient(num)))
+			for(int j = i + 1; j <sieve.size(); j++)
 			{
-				if(max > phi)
-				{
-					max = phi;
-					ans = num;
-				}
+				int num = sieve.get(i) * sieve.get(j);
+				if(num > 10000000)
+					break;
+				int phi = (sieve.get(i) - 1) * (sieve.get(j) - 1);
+				if(checkPerm(num,phi))
+					if(1.0 * num/phi < max)
+					{
+						max = 1.0*num/phi;
+						ans = num;
+					}
 			}
-			num++;
 		}
-		System.out.println(max + " " + ans);
+		return ans;
+		
+	}
+	public static void main(String[] args)
+	{
+		System.out.println(solve());
 	}
 }
