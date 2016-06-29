@@ -1,33 +1,15 @@
-
+import java.util.*;
 public class Euler10 
 {
-	public static boolean checkPrime(long num)
-	{
-		if(num % 2 == 0)
-			return false;
-		for(int x=3; x<= Math.ceil(Math.sqrt(num)); x+= 2)
-		{
-			if(num % x == 0)
-				return false;
-		}
-			
-		return true;
-	}
-	
 	public static long solve()
 	{
-		long ans = 2;
-		long temp = 3;
-		while(temp < 2000000)
+		ArrayList<Integer> sieve = Methods.sieve(2000000);
+		long sum = 0;
+		for(Integer i: sieve)
 		{
-			if(checkPrime(temp))
-			{
-				ans += temp;
-				//System.out.println(temp);
-			}
-			temp += 2;
+			sum += i;
 		}
-		return ans;
+		return sum;
 	}
 	
 	public static void main(String[] args)

@@ -5,7 +5,7 @@ public class Euler3
 	{
 		long temp = num;
 		int largestFactor = 1;
-		while(temp%2 == 0)
+		while(temp % 2 == 0)
 		{
 			temp /= 2;
 			largestFactor = 2;
@@ -17,7 +17,7 @@ public class Euler3
 		{
 			while(temp % count == 0)
 			{
-				temp /=count;
+				temp /= count;
 				largestFactor = count;
 			}
 

@@ -1,37 +1,35 @@
-import java.util.Arrays;
-
 public class Euler7 
 {
-	public static boolean checkPrimes(long num)
+	public static int findPrime(int numOfPrimes)
 	{
-		if(num%2 == 0)
-			return false;
-		for(int x=3; x<=Math.ceil(Math.sqrt(num)); x += 2)
+		int[] prime = new int[numOfPrimes];
+		prime[0] = 2;
+		int n = 3;
+		int index = 0;
+		while(index < numOfPrimes - 1)
 		{
-			if(num % x == 0)
-				return false;
-		}
-		return true;
-	}
-	
-	public static long findPrime(int count)
-	{
-		int counter = 1; 
-		long prime = 3;
-		while(counter < count)
-		{
-			if(checkPrimes(prime))
+			index++;
+			prime[index] = n;
+			outer:
+			while(true)
 			{
-				counter++;
-				System.out.println(counter);
+				n+=2;
+				int k =1;
+				while(true)
+				{
+					if(n % prime[k] == 0)
+						break;
+					if(n/prime[k] <= prime[k])
+						break outer;
+					k++;
+				}
 			}
-			prime += 2;
 		}
-		return prime -2;
+		return prime[numOfPrimes-1];
 	}
 	public static void main(String[] args)
 	{
-		long x = findPrime(4000000);
+		long x = findPrime(10001);
 		System.out.println(x);
 	}
 

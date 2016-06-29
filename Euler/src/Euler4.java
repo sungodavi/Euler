@@ -3,29 +3,20 @@ public class Euler4
 {
 	public static boolean palindrome(int num)
 	{
-		int[] digits = new int[(int)(Math.ceil(Math.log10(num)))];
-		int temp = num;
-		for(int x=0; x< Math.ceil(Math.log10(num)); x++)
-		{
-			digits[x] = temp % 10;
-			temp /= 10;
-		}
+		int[] digits = Methods.toArray(num);
 		int end = digits.length-1;
-		int count = 0;
-		for(int n=0; n< digits.length; n++)
+		for(int n=0; n < digits.length/2 + 1; n++)
 		{
-			if(digits[n] == digits[end-n])
-				count ++;
+			if(digits[n] != digits[end-n])
+				return false;
 		}
-		if(count == digits.length)
 			return true;
-		return false;
 	}
 	
 	public static int findPrime(int a, int b)
 	{
 		int ans = 0;
-		for(int x = 999; x>=100; x--)
+		for(int x = 999; x >=100; x--)
 		{
 			for(int y = 999; y >= 100; y--)
 			{
