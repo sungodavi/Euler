@@ -1,9 +1,10 @@
 import java.util.*;
 import java.io.*;
+import java.awt.*;
 public class Euler96 
 {
 	private int[][] puzzle;
-	@SuppressWarnings("unchecked")
+	private ArrayList<Point> zeroes = new ArrayList<Point>();
 	private ArrayList<Integer>[][] solutions = new ArrayList[9][9];
 	
 	public Euler96(int[][] matrix)
@@ -165,7 +166,7 @@ public class Euler96
 					if(puzzle[r][c] == 0)
 					{
 						complete = false;
-						int num =check(r,c);
+						int num = check(r,c);
 						puzzle[r][c] = num;
 						if(num != 0)
 						{
@@ -176,8 +177,7 @@ public class Euler96
 				}
 			}
 		}
-		//if(!(complete || change))
-			//bruteForce(brutePuzzle,solutions,0,0);
+		backTrace();
 	}
 	
 	public void display()
@@ -191,26 +191,14 @@ public class Euler96
 				else
 					System.out.print(puzzle[r][c] + " ");
 			}
-			if(r == 2 || r== 5)
+			if(r == 2 || r == 5)
 				System.out.println("\n---------------------");
 			else
 				System.out.println();
 		}
+		System.out.println();
 	}
 
-	public void showSolutions()
-	{
-		System.out.println();
-		for(int r = 0; r < 9; r++)
-		{
-			for(int c = 0; c < 9; c++)
-			{
-				System.out.printf("%-19s ",Arrays.toString(solutions[r][c].toArray()));
-			}
-			System.out.println();
-		}
-	}
-	
 	public boolean complete()
 	{
 		for(int r = 0; r < 9; r++)
@@ -224,12 +212,58 @@ public class Euler96
 	{
 		return 100 * puzzle[0][0] + 10 * puzzle[0][1] + puzzle[0][2];
 	}
-	
-	public static void backTrace()
+	public boolean validate()
 	{
-		
+		for(int r = 0; r < 9; r++)
+			for(int c = 0; c< 9; c++)
+				if(!validate(r,c))
+					return false;
+		return true;
 	}
-
+	public boolean validate(int r, int c)
+	{
+		int value = puzzle[r][c];
+		for(int i = 0; i < 9; i++)
+		{
+			if(i != r && puzzle[i][c] == value)
+				return false;
+			if(i != c && puzzle[r][i] == value)
+				return false;
+		}
+		for(int i = r/3*3; i < r/3*3 + 3; i++)
+			for(int j = c/3*3; j < c/3*3+3; j++)
+			{
+				if(!(i == r && j == c) && puzzle[i][j] == value)
+					return false;
+			}
+		return true;
+	}
+	public void backTrace()
+	{
+		for(int r = 0; r < 9; r++)
+			for(int c = 0; c < 9; c++)
+				if(puzzle[r][c] == 0)
+					zeroes.add(new Point(r,c));
+		recurse(0);
+	}
+	
+	public boolean recurse(int index)
+	{
+		if(complete())
+			return true;
+		
+		int r = zeroes.get(index).x;
+		int c = zeroes.get(index).y;
+		for(int i = 1; i <= 9; i++)
+		{
+			puzzle[r][c] = i;
+			if(validate(r,c))
+				if(recurse(index + 1))
+					return true;
+		}
+		puzzle[r][c] = 0;
+		return false;
+	}
 	public static void main(String[] args) throws IOException
 	{
 		int sum = 0;
@@ -248,22 +282,12 @@ public class Euler96
 			}
 			
 			Euler96 puzzle = new Euler96(matrix);
-			//puzzle.display();
 			puzzle.solve();
-			//System.out.println();
 			puzzle.display();
-			System.out.println();
-			if(!puzzle.complete())
-			{
-				puzzle.showSolutions();
-				break;
-			}
-			sum += puzzle.getCorner();
+			sum += puzzle.getCorner();				
 		}
 		System.out.println(sum);
 		
 	}
 
 }
-
-
