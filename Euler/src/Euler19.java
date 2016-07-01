@@ -1,7 +1,6 @@
 
 public class Euler19 
 {
-	public static int[] days = {0, 31, 28, 31, 30, 31, 30, 31, 30, 31, 30, 31, 30, 31};
 	public static int day = 1;
 	public static int counter = 0;
 	

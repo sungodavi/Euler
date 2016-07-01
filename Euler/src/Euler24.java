@@ -1,50 +1,43 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Euler24 
 {
-	public static ArrayList<String> numbers = new ArrayList<String>(5);
-	
-	public static void fill()
+	public static int[] swap(int[] a, int x, int y)
 	{
-		for(int x=0; x< 10; x++)
-		{
-			numbers.add(Integer.toString(x));
-		}
+		int temp = a[x];
+		a[x] = a[y];
+		a[y] = temp;
+		return a;
 	}
-	
-	public static int Factorial(int num)
+	public static long solve()
 	{
-		int ans=1;
-		for(int x=2; x<= num; x++)
-			ans *= x;
-		return ans;
-	}
-	
-	public static int[] makeArray()
-	{
-		int[] array = new int[10];
-		int num = 1000000;
-		for(int x=9; x>1; x--)
+		int[] a = {0,1,2,3,4,5,6,7,8,9};
+		int j,k,l;
+		for(int iterate = 1; iterate < 1000000; iterate++)
 		{
-			int temp =1;
-			while(temp * Factorial(x) < num)
+			j = a.length - 2;
+			l = j+1;
+			while(j > 0 && a[j] > a[j+1])
+				j--;
+			k = j+1;
+			while(l > 0 && a[j] > a[l])
+				l--;
+			a = swap(a,j,l);
+			
+			l = a.length-1;
+			while(k < l)
 			{
-				temp++;
+				a = swap(a,k,l);
+				k++;
+				l--;
 			}
-			num -= (temp-1) * Factorial(x);
-			array[x] = temp;
 		}
-		return array;
+		return Methods.toLong(a);
 	}
 	
 	public static void main(String[] args)
 	{
-		int ans = 0;
-		int[] array = {2, 6, 6, 2, 5, 1, 2, 1, 2};
-		for(int x=9, y=0; y<8; x--, y++)
-		{
-			ans += array[y] * Factorial(x);
-		}
-		System.out.println(ans);
+		System.out.println(solve());
 	}
 }
