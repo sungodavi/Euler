@@ -42,6 +42,17 @@ public class Methods
 	    }
 	}
 	
+	public static int gcd(int x, int y)
+	{
+		while(y != 0)
+		{
+			int temp = x;
+			x = y;
+			y = temp % y;
+		}
+		return x;
+	}
+	
 	public static long gcd(long x, long y)
 	{
 		while(y != 0)

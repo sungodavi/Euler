@@ -1,11 +1,12 @@
 import java.util.*;
 public class Euler60 
 {
-	public static ArrayList<Integer> sieve = Methods.sieve(10000);
+	public static ArrayList<Integer> sieve = Methods.sieve(673);
 	public static HashSet<Integer> makePairs(int p)
 	{
 		int p1 = sieve.get(p);
 		HashSet<Integer> pairs = new HashSet<Integer>();
+		pairs.add(p1);
 		for(int i = 1; i < sieve.size(); i++)
 		{
 			int p2 = sieve.get(i);
@@ -41,10 +42,13 @@ public class Euler60
 	public static void main(String[] args)
 	{
 		HashSet<Integer>[] pairs = new HashSet[sieve.size()];
+		int count = 0;
 		for(int i = 0; i < pairs.length; i++)
 		{
 			pairs[i] = makePairs(i);
+			if(pairs[i].contains(3))
+				count++;
+			System.out.println(sieve.get(i) + ": " + Arrays.toString(pairs[i].toArray()));
 		}
-		
 	}
 }
