@@ -283,4 +283,35 @@ public class Methods
 		}
 		return a;
 	}
+	
+	public static int count(boolean[] a, boolean check)
+	{
+		int count = 0;
+		for(boolean b: a)
+		{
+			if(b == check)
+				count++;
+		}
+		return count;
+	}
+	public static int count(int[] a, int check)
+	{
+		int count = 0;
+		for(int b: a)
+		{
+			if(b == check)
+				count++;
+		}
+		return count;
+	}
+	public static int count(double[] a, double check)
+	{
+		int count = 0;
+		for(double b: a)
+		{
+			if(b == check)
+				count++;
+		}
+		return count;
+	}
 }
