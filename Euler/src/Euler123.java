@@ -31,7 +31,7 @@ public class Euler123
 		return a;
 	}
 	
-	public static void main(String[] args)
+	public static int solve()
 	{
 		long[] primes = primes(100000);
 		BigInteger num;
@@ -42,8 +42,16 @@ public class Euler123
 			System.out.println(i + " " + num);
 			if(num.compareTo(BigInteger.TEN.pow(10)) > 0)
 			{
-				break;
+				return i;
 			}
 		}
+	}
+	public static void main(String[] args)
+	{
+		long startTime = System.currentTimeMillis();
+		System.out.println(solve());
+		long endTime   = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		System.out.println("Total time: " + (1.0 * totalTime/1000) + " seconds");
 	}
 }

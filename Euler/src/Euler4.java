@@ -1,11 +1,11 @@
 
 public class Euler4 
 {
-	public static boolean palindrome(int num)
+	public static boolean isPalindrome(int num)
 	{
 		int[] digits = Methods.toArray(num);
 		int end = digits.length-1;
-		for(int n=0; n < digits.length/2 + 1; n++)
+		for(int n = 0; n < digits.length / 2 + 1; n++)
 		{
 			if(digits[n] != digits[end-n])
 				return false;
@@ -13,14 +13,14 @@ public class Euler4
 			return true;
 	}
 	
-	public static int findPrime(int a, int b)
+	public static int solve()
 	{
 		int ans = 0;
 		for(int x = 999; x >=100; x--)
 		{
 			for(int y = 999; y >= 100; y--)
 			{
-				if(palindrome(x*y) && x*y > ans)
+				if(isPalindrome(x*y) && x*y > ans)
 					ans = x*y;
 			}
 		}
@@ -28,8 +28,12 @@ public class Euler4
 	}
 	public static void main(String[] args)
 	{
-		int x = findPrime(999,999);
+		long startTime = System.currentTimeMillis();
+		int x = solve();
 		System.out.println(x);
+		long endTime   = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		System.out.println("Total time: " + (1.0 * totalTime/1000) + " seconds");
 	}
 
 }

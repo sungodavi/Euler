@@ -25,7 +25,11 @@ public class Euler25
 	
 	public static void main(String[] args)
 	{
+		long startTime = System.currentTimeMillis();
 		long x = Fibonacci(new BigInteger("1"),new BigInteger("2"));
 		System.out.println(x);
+		long endTime   = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		System.out.println("Total time: " + (1.0 * totalTime/1000) + " seconds");
 	}
 }

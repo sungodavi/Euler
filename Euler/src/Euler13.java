@@ -12,8 +12,7 @@ public class Euler13
 		}
 		return new BigInteger(sum.toString().substring(0, 10));
 	}
-	
-	public static void main(String[] args) throws IOException
+	public static BigInteger solve() throws IOException
 	{
 		Scanner scan = new Scanner(new File("13.txt"));
 		BigInteger[] nums = new BigInteger[100];
@@ -25,7 +24,15 @@ public class Euler13
 			count++;
 		}
 		scan.close();
-		System.out.println(sum(nums));
+		return sum(nums);
+	}
+	public static void main(String[] args) throws IOException
+	{
+		long startTime = System.currentTimeMillis();
+		System.out.println(solve());
+		long endTime   = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		System.out.println("Total time: " + (1.0 * totalTime/1000) + " seconds");
 	}
 
 }

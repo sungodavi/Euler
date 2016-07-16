@@ -1,8 +1,9 @@
 import java.math.BigInteger;
 
-public class Euler26 {
-
-	public static void main(String[] args) {
+public class Euler26 
+{
+	public static long solve()
+	{
 		BigInteger temp = BigInteger.TEN;
 		int[] ans = new int[2];
 
@@ -16,7 +17,6 @@ public class Euler26 {
 					{
 						if (temp.pow(k + s).mod(BigInteger.valueOf(n)).equals(temp.pow(s))) 
 						{
-							//System.out.println(n + " " + k);
 							if (k > ans[0]) 
 							{
 								ans[0] = k;
@@ -28,6 +28,15 @@ public class Euler26 {
 				}
 			}
 		}
-		System.out.println(ans[1]);
+		return ans[1];		
+	}
+
+	public static void main(String[] args) 
+	{
+		long startTime = System.currentTimeMillis();
+		System.out.println(solve());
+		long endTime   = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		System.out.println("Total time: " + (1.0 * totalTime/1000) + " seconds");
 	}
 }

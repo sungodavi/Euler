@@ -1,7 +1,7 @@
 
 public class Euler31 
 {
-	public static int solve()
+	public static int bruteForce()
 	{
 		int count = 0;
 		for(int l200 = 0; l200 <= 1; l200++)
@@ -18,8 +18,26 @@ public class Euler31
 		return count;
 	}
 	
+	public static int solve()
+	{
+		int[] a = new int[201];
+		int[] values = {1,2,5,10,20,50,100,200};
+		a[0] = 1;
+		for(int v: values)
+		{
+			for(int i = v; i < a.length; i++)
+			{
+				a[i] += a[i-v];
+			}
+		}
+		return a[200];
+	}
 	public static void main(String[] args)
 	{
+		long startTime = System.currentTimeMillis();
 		System.out.println(solve());
+		long endTime   = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		System.out.println("Total time: " + (1.0 * totalTime/1000) + " seconds");
 	}
 }

@@ -25,17 +25,10 @@ public class Euler32
 		a[y] = temp;
 	}
 	
-	public static int fact(int num)
-	{
-		int ans = 1;
-		for(int x = 2; x <= num; x++)
-			ans *= x;
-		return ans;
-	}
 	public static long permutations()
 	{
-		ArrayList<Integer> count = new ArrayList<Integer>();
-		for(int x = 0; x < fact(a.length) - 1; x++)
+		ArrayList<Integer> set = new ArrayList<Integer>();
+		for(int x = 1; x <= Methods.fact(a.length) - 1; x++)
 		{
 			int j = a.length - 2;
 			int l = j+1;
@@ -58,14 +51,14 @@ public class Euler32
 			}
 			if(check())
 			{
-				if(!count.contains(Integer.parseInt("" + a[5] + a[6] + a[7] + a[8])))
-					count.add(Integer.parseInt("" + a[5] + a[6] + a[7] + a[8]));
+				if(!set.contains(Integer.parseInt("" + a[5] + a[6] + a[7] + a[8])))
+					set.add(Integer.parseInt("" + a[5] + a[6] + a[7] + a[8]));
 			}
 		}
 		int ans = 0;
-		for(int x1 = 0; x1 < count.size(); x1++)
+		for(int x1 = 0; x1 < set.size(); x1++)
 		{
-			ans += count.get(x1);
+			ans += set.get(x1);
 		}
 		return ans;
 	}
@@ -73,7 +66,11 @@ public class Euler32
 		
 	public static void main(String[] args)
 	{
+		long startTime = System.currentTimeMillis();
 		System.out.println(permutations());
+		long endTime   = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		System.out.println("Total time: " + (1.0 * totalTime/1000) + " seconds");
 	}
 	
 

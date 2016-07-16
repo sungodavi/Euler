@@ -4,7 +4,6 @@ public class Euler40
 	public static int getDigit(int num, int place)
 	{
 		int digits = (int)Math.log10(num) + 1;
-		System.out.println(num + " " + place);
 		num %= Math.pow(10, digits - place + 1);
 		num /= Math.pow(10, digits - place);
 		return num;
@@ -30,7 +29,11 @@ public class Euler40
 	
 	public static void main(String[] args)
 	{
+		long startTime = System.currentTimeMillis();
 		int x = solve();
 		System.out.println(x);
+		long endTime   = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		System.out.println("Total time: " + (1.0 * totalTime/1000) + " seconds");
 	}
 }
