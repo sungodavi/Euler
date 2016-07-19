@@ -13,12 +13,15 @@ public class Euler76
 				a[j] += a[j-i];
 			}
 		}
-		System.out.println(Arrays.toString(a));
 		return a[num];
 	}
 	
 	public static void main(String[] args)
 	{
+		long startTime = System.currentTimeMillis();
 		System.out.println(solve(100) - 1);
+		long endTime   = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		System.out.println("Total time: " + (1.0 * totalTime/1000) + " seconds");
 	}
 }

@@ -5,22 +5,16 @@ public class Euler77
 	public static int solve(int num)
 	{
 		int[] a = new int[num+1];
-		Arrays.fill(a, 0);
 		a[0] = 1;
 		ArrayList<Integer> sieve = Methods.sieve(num);
 		for(int i: sieve)
-		{
 			for(int j = i; j < a.length; j++)
-			{
 				a[j] += a[j-i];
-			}
-		}
-		System.out.println(Arrays.toString(a));
+		
 		for(int i = 0; i < a.length; i++)
-		{
 			if(a[i] > 5000)
 				return i;
-		}
+		
 		return -1;
 	}
 	

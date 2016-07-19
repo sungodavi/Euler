@@ -10,6 +10,7 @@ public class Euler79
 
 		while(scan.hasNextInt())
 			list.add(Methods.toArray(scan.nextInt()));
+		scan.close();
 	}
 	
 	public void display()
