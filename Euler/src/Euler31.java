@@ -14,7 +14,7 @@ public class Euler31
 									for(int l1 = 0; l1 <= 200; l1 ++)
 										if(200 * l200 + 100 * l100 + 50 * l50 + 
 												20 * l20 + 10 * l10 + 5 * l5 + 2 * l2 + l1 == 200)
-											count ++;
+											count++;
 		return count;
 	}
 	

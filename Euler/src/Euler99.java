@@ -7,7 +7,7 @@ public class Euler99
 		return exponent * Math.log(base);
 	}
 	
-	public static void main(String[] args) throws IOException
+	public static int solve() throws IOException
 	{
 		Scanner scan = new Scanner(new File("99.txt"));
 		double compare = 0;
@@ -25,6 +25,16 @@ public class Euler99
 			}
 			line++;
 		}
-		System.out.println(ans);
+		scan.close();
+		return ans;
+	}
+	public static void main(String[] args) throws IOException
+	{
+		long startTime = System.currentTimeMillis();
+		System.out.println(solve());
+		long endTime   = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		System.out.println("Total time: " + (1.0 * totalTime/1000) + " seconds");
+		
 	}
 }

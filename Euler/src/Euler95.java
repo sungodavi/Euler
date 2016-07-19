@@ -7,9 +7,11 @@ public class Euler95
 		for(int i = 1; i <= Math.sqrt(num); i++)
 		{
 			if(num % i == 0)
+			{
 				sum += i;
-			if(num % i == 0 && num/i != i)
-				sum += num / i;
+				if(num/i != i)
+					sum += num / i;
+			}
 		}
 		return sum;
 	}
@@ -49,7 +51,10 @@ public class Euler95
 	
 	public static void main(String[] args)
 	{
-		System.out.println(Aliquot(220));
+		long startTime = System.currentTimeMillis();
 		System.out.println(solve());
+		long endTime   = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		System.out.println("Total time: " + (1.0 * totalTime/1000) + " seconds");
 	}
 }

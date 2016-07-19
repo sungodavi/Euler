@@ -3,14 +3,9 @@ import java.util.Arrays;
 
 public class Euler52 
 {
-	public static long[] getDigits(long num)
+	public static int[] getDigits(long num)
 	{
-		long[] ans = new long[(int)Math.log10(num) + 1];
-		for(int x = 0; x < ans.length; x++)
-		{
-			ans[x] = (long) (num % 10);
-			num /= 10;	
-		}
+		int[] ans = Methods.toArray(num);
 		Arrays.sort(ans);
 		return ans;
 	}

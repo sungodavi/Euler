@@ -6,10 +6,9 @@ public class Euler38
 		int[] a = Methods.toArray(num);
 		Arrays.sort(a);
 		for(int i = 0; i < a.length; i++)
-		{
 			if(a[i] != i + 1)
 				return false;
-		}
+		
 		return true;
 	}
 	public static int solve()

@@ -2,47 +2,11 @@ import java.util.*;
 
 public class Euler50 
 {
-	public static ArrayList<Integer> sieve(int num)
-	{
-		boolean[] array = new boolean[num + 1];
-		Arrays.fill(array, true);
-		array[0] = false;
-		array[1] = false;
-		
-		for(int i = 2; i < Math.sqrt(num); i ++)
-		{
-			for(int j = 2 * i; j <= num; j += i)
-			{
-				array[j] = false;
-			}
-		}
-		
-		ArrayList<Integer> list = new ArrayList<Integer>();
-		for(int i = 2; i < array.length; i++)
-		{
-			if(array[i])
-				list.add(i);
-		}
-		return list;
-	}
-	
-	public static boolean checkPrime(int num)
-	{
-		if(num % 2 == 0)
-			return false;
-		
-		for(int x = 3; x < num; x++)
-		{
-			if(num % x == 0)
-				return false;
-		}
-		return true;
-	}
 	public static int solve(int num)
 	{
 		int ans = 0;
 		int ansCount = 0;
-		ArrayList<Integer> list = sieve(num);
+		ArrayList<Integer> list = Methods.sieve(num);
 		for(int i = 0; i <= 10; i++)
 		{
 			int sum = 0;
@@ -52,7 +16,7 @@ public class Euler50
 			{
 				count++;
 				sum += list.get(j);
-				if(sum < num && checkPrime(sum) && ansCount < count)
+				if(sum < num && Methods.checkPrime(sum) && ansCount < count)
 				{
 					ansCount = count;
 					ans = sum;
@@ -66,8 +30,12 @@ public class Euler50
 	
 	public static void main(String[] args)
 	{
+		long startTime = System.currentTimeMillis();
 		int x = 1000000;
 		System.out.println(solve(x));
+		long endTime   = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		System.out.println("Total time: " + (1.0 * totalTime/1000) + " seconds");
 	}
 
 }

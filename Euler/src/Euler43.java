@@ -3,7 +3,8 @@ public class Euler43 {
 	public static int[] a;
 	public static BigInteger sum = BigInteger.ZERO;
 
-	public Euler43(int[] array) {
+	public Euler43(int[] array) 
+	{
 		a = array;
 	}
 	

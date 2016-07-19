@@ -3,8 +3,6 @@ public class Euler59
 {
 	public static int solve()
 	{
-		int ans = 0;
-		int replace = 0;
 		ArrayList<Integer> sieve = Methods.sieve(10000,999999);
 		for(int n = 0; n < sieve.size(); n++)
 		{

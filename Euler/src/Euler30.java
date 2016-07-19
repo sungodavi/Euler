@@ -9,9 +9,7 @@ public class Euler30
 		{
 			ans += digits[x] * digits[x] * digits[x] * digits[x] * digits[x];
 		}
-		if(ans == num)
-			return true;
-		return false;
+		return ans == num;
 	}
 	
 	public static int solve()

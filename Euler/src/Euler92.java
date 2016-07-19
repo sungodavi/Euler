@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Euler92 
 {
-	public static int sumDigits(int num)
+	public static int sumofDigitsSquared(int num)
 	{
 		int[] a = Methods.toArray(num);
 		int sum = 0;
@@ -32,7 +32,7 @@ public class Euler92
 					break;
 				}
 				sequence.add(num);
-				num = sumDigits(num);
+				num = sumofDigitsSquared(num);
 				if(num < 0)
 				{
 					return -1;

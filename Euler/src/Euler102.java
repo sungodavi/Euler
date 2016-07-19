@@ -26,6 +26,7 @@ public class Euler102
 				System.out.println("Triangle (" + a.x + "," + a.y + ")" + "," + "(" + c.x + "," + c.y + ")" + "," + "(" + c.x + "," + c.y + ")" + "DOES NOT contains origin");
 
 		}
+		scan.close();
 		return count;
 	}
 	public static void main(String[] args) throws IOException

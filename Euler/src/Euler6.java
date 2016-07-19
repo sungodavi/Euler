@@ -4,10 +4,10 @@ public class Euler6
 	public static long solve(int num)
 	{
 		int ans = 0;
-		for(int a=1; a<=num; a++)
+		for(int a = 1; a <= num; a++)
 		{
 							
-			for(int b=a+1; b<=num; b++)
+			for(int b = a+1; b <= num; b++)
 			{
 				ans += 2*a*b;
 			}

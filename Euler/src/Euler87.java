@@ -26,6 +26,10 @@ public class Euler87
 	
 	public static void main(String[] args)
 	{
+		long startTime = System.currentTimeMillis();
 		System.out.println(solve(50000000));
+		long endTime   = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		System.out.println("Total time: " + (1.0 * totalTime/1000) + " seconds");
 	}
 }

@@ -1,4 +1,3 @@
-import java.util.*;
 public class Euler112 
 {
 	public static boolean checkBouncy(long num)

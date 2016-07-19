@@ -5,11 +5,11 @@ public class Euler21
 	public static int sumOfDivisors(int num)
 	{
 		int sum = 1;
-		for(int x=2; x <= Math.sqrt(num); x++)
+		for(int x = 2; x <= Math.sqrt(num); x++)
 		{
 			if(num % x == 0)
 			{
-				if(num/x != x)
+				if(num / x != x)
 					sum += num/x;
 				sum += x;
 			}
@@ -26,9 +26,9 @@ public class Euler21
 	{
 		for(int a = 1; a < num; a++)
 		{
-			int b = sumOfDivisors(a);
-			if(a != b)
-				if(amicableNumbers(a, b))
+			int sum = sumOfDivisors(a);
+			if(a != sum)
+				if(amicableNumbers(a, sum))
 					counter += a;
 		}
 	}

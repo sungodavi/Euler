@@ -84,20 +84,19 @@ public class Methods
 	{
 		boolean ans[] = new boolean[num + 1];
 		ArrayList<Integer> sieve = new ArrayList<Integer>();
-		Arrays.fill(ans, true);
-		ans[0] = false;
-		ans[1] = false;
+		ans[0] = true;
+		ans[1] = true;
 		for(int i = 2; i<= Math.ceil(Math.sqrt(num)); i++)
 		{
 			for(int j = i*2; j <= num; j += i)
 			{
-				ans[j] = false;
+				ans[j] = true;
 			}
 		}
 		
 		for(int i = 0; i < ans.length; i++)
 		{
-			if(ans[i])
+			if(!ans[i])
 				sieve.add(i);
 		}
 		return sieve;
@@ -122,22 +121,21 @@ public class Methods
 	{
 		boolean ans[] = new boolean[end + 1];
 		ArrayList<Integer> sieve = new ArrayList<Integer>();
-		Arrays.fill(ans, true);
 		for(int i = 0; i < start; i++)
 		{
-			ans[i] = false;
+			ans[i] = true;
 		}
 		for(int i = 2; i<= Math.ceil(Math.sqrt(end)); i++)
 		{
 			for(int j = i*2; j <= end; j += i)
 			{
-				ans[j] = false;
+				ans[j] = true;
 			}
 		}
 		
 		for(int i = 0; i < ans.length; i++)
 		{
-			if(ans[i])
+			if(!ans[i])
 				sieve.add(i);
 		}
 		return sieve;

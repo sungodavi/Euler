@@ -1,6 +1,5 @@
 import java.util.Arrays;
 
-
 public class Poker 
 {
 	public static boolean winner(Euler54 p1, Euler54 p2)
