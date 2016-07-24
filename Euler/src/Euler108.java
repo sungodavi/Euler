@@ -14,7 +14,7 @@ public class Euler108
 				exp++;
 				num /= i;
 			}
-			count*= 2*exp+1;
+			count *= 2*exp+1;
 		}
 		return count;
 	}

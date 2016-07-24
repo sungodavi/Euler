@@ -6,11 +6,9 @@ public class Euler136
 		int[] solutions = new int[limit+1];
 		for(int x = 1; x <= limit; x++)
 			for(int y = 1; x * y <= limit; y++)
-			{
 				if((x+y)%4 == 0)
 					if(3*y > x && (3*y - x) % 4 == 0)
 						solutions[x*y]++;
-			}
 		
 		return Methods.count(solutions, 1);
 	}

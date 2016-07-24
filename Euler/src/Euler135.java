@@ -13,11 +13,16 @@ public class Euler135
 						solutions[x*y]++;
 			}
 		}
+		
 		return Methods.count(solutions, 10);
 	}
 	
 	public static void main(String[] args)
 	{
-		System.out.println(solve(999999));
+		long startTime = System.currentTimeMillis();
+		System.out.println(solve(1000000));
+		long endTime   = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		System.out.println("Total time: " + (1.0 * totalTime/1000) + " seconds");
 	}
 }
