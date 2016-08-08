@@ -81,19 +81,15 @@ public class Methods
 		ArrayList<Integer> sieve = new ArrayList<Integer>();
 		ans[0] = true;
 		ans[1] = true;
-		for(int i = 2; i<= Math.ceil(Math.sqrt(num)); i++)
-		{
+		int sqrt = (int)Math.sqrt(num);
+		for(int i = 2; i<= sqrt; i++)
 			for(int j = i*2; j <= num; j += i)
-			{
 				ans[j] = true;
-			}
-		}
 		
 		for(int i = 0; i < ans.length; i++)
-		{
 			if(!ans[i])
 				sieve.add(i);
-		}
+		
 		return sieve;
 	}
 	
@@ -101,23 +97,18 @@ public class Methods
 	{
 		boolean ans[] = new boolean[end + 1];
 		ArrayList<Integer> sieve = new ArrayList<Integer>();
+		
 		for(int i = 0; i < start; i++)
-		{
 			ans[i] = true;
-		}
+		
 		for(int i = 2; i<= Math.ceil(Math.sqrt(end)); i++)
-		{
 			for(int j = i*2; j <= end; j += i)
-			{
 				ans[j] = true;
-			}
-		}
 		
 		for(int i = 0; i < ans.length; i++)
-		{
 			if(!ans[i])
 				sieve.add(i);
-		}
+		
 		return sieve;
 	}
 	
@@ -130,10 +121,9 @@ public class Methods
 		if(num % 2 == 0)
 			return false;
 		for(int i = 3; i <= Math.sqrt(num); i += 2)
-		{
 			if(num % i == 0)
 				return false;
-		}
+		
 		return true;
 	}
 	
@@ -216,7 +206,11 @@ public class Methods
 		return sqrt * sqrt == num;
 	}
 	
-	
+	public static boolean isPerfectSquare(BigInteger num)
+	{
+		BigInteger sqrt = sqrt(num);
+		return sqrt.multiply(sqrt).equals(num);
+	}
 	public static long fact(long num)
 	{
 		long ans = 1;

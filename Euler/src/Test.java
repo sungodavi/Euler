@@ -16,6 +16,13 @@ public class Test
 	
 	public static void main(String[] args)
 	{
+		long startTime = System.currentTimeMillis();
+		Methods.sieve(100000000);
+		long endTime   = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		System.out.println("Total time: " + (1.0 * totalTime/1000) + " seconds");
+		
+		/*
 		SortedSet<Integer> t1 = new TreeSet<Integer>();
 		SortedSet<Integer> s1 = new TreeSet<Integer>();
 		SortedSet<Integer> p1 = new TreeSet<Integer>();
@@ -86,6 +93,6 @@ public class Test
 				}
 			}
 			
-		}
+		*/
 	}
 }
