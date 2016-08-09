@@ -45,6 +45,11 @@ public class Geometry
 		return array;
 	}
 	
+	public static double heronsFormula(double a, double b, double c)
+	{
+		double s = (a + b + c)/2;
+		return Math.sqrt(s * (s-a) * (s-b) * (s-c));
+	}
 	public static boolean pointInTriangle(Point a, Point b, Point c, Point p)
 	{
 		double[] array = barycentricCoordinates(a,b,c,p);

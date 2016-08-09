@@ -30,7 +30,6 @@ public class Euler108
 		while(ans < 1000)
 		{
 			ans = getSolutions(n);
-			System.out.println(n + " " + ans);
 			n++;
 		}
 		System.out.println(n - 1);
