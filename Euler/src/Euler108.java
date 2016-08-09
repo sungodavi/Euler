@@ -14,7 +14,7 @@ public class Euler108
 				exp++;
 				num /= i;
 			}
-			count*= 2*exp+1;
+			count *= 2*exp+1;
 		}
 		return count;
 	}
@@ -23,7 +23,8 @@ public class Euler108
 		return (countSquareDivisors(n)+1)/2;
 	}
 	
-	public static void main(String[] args)
+	
+	public static int solve()
 	{
 		int n = 4;
 		int ans = 0;
@@ -32,6 +33,14 @@ public class Euler108
 			ans = getSolutions(n);
 			n++;
 		}
-		System.out.println(n - 1);
+		return n - 1;
+	}
+	public static void main(String[] args)
+	{
+		long startTime = System.currentTimeMillis();
+		System.out.println(solve());
+		long endTime   = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		System.out.println("Total time: " + (1.0 * totalTime/1000) + " seconds");
 	}
 }

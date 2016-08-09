@@ -1,4 +1,4 @@
-
+import java.math.*;
 public class Euler45 
 {
 	public static long tri(long n)
@@ -14,12 +14,13 @@ public class Euler45
 	{
 		return n*(2*n-1);
 	}
-	public static long solve()
+	public static long bruteForce()
 	{
 		boolean check = false;
 		boolean temp1 = false;
 		boolean temp2 = false;
 		long x = 286;
+		outer:
 		while(!check)
 		{
 			temp1 = false;
@@ -37,7 +38,7 @@ public class Euler45
 			}
 			
 			int h = 144;
-			while(hex(h) <= tri(x))
+	 		while(hex(h) <= tri(x))
 			{
 				if(hex(h) == tri(x))
 				{
@@ -47,12 +48,8 @@ public class Euler45
 				else h++;
 			}
 			
-			if(temp1 == true && temp2 == true)
-			{
-				check = true;
-				//System.out.println(x + " " + tri(x) + " " + pent(p) + " " +hex(h));
-				break;
-			}
+			if(temp1 &&  temp2)
+				break outer;
 			
 			
 			x++;
@@ -60,9 +57,26 @@ public class Euler45
 		return tri(x);
 	}
 	
+	public static long solve()
+	{
+		long x = 286;
+		while(true)
+		{
+			long hex = 1 + 4 * x * (x+1);
+			long pent = 1 + 12 * x * (x+1);
+			if(Methods.isPerfectSquare(pent) && ((int)Math.sqrt(pent) + 1) % 6 == 0)
+				if(Methods.isPerfectSquare(hex) && ((int)Math.sqrt(hex) + 1) % 4 == 0)
+					return tri(x);
+			x++;
+		}
+	}
 	public static void main(String[] args)
 	{
+		long startTime = System.currentTimeMillis();
 		long x = solve();
 		System.out.println(x);
+		long endTime   = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		System.out.println("Total time: " + (1.0 * totalTime/1000) + " seconds");
 	}
 }

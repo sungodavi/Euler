@@ -1,88 +1,42 @@
-import java.util.Arrays;
+import java.util.*;
 
-public class Euler35 {
-	public static int[] toArray(int num) {
-		int digits = (int) Math.log10(num) + 1;
-		int[] array = new int[digits];
-		for (int x = digits - 1; x > 0; x--) {
-			array[x] = num % 10;
-			num /= 10;
-		}
-		array[0] = num;
-		return array;
-	}
-
-	public static long toInt(int[] a) {
-		long ans = 0;
-		for (int x = 0; x < a.length; x++) {
-			ans += a[x] * Math.pow(10, a.length - x - 1);
-		}
-		return ans;
-	}
-
-	public static boolean checkPrime(long num) {
-		if(num == 1)
-			return false;
-		if (num == 2)
-			return true;
-		if (num % 2 == 0)
-			return false;
-		for (int x = 3; x <= Math.sqrt(num); x++) {
-			if (num % x == 0)
-				return false;
-		}
-		return true;
-	}
-	
-	public static boolean[] sieve(int num) {
-		boolean ans[] = new boolean[num + 1];
-		Arrays.fill(ans, true);
-		ans[0] = false;
-		ans[1] = false;
-		for (int i = 2; i <= Math.ceil(Math.sqrt(num)); i++) {
-			for (int j = i * 2; j <= num; j += i) {
-				ans[j] = false;
+public class Euler35 
+{
+	public static boolean checkRotations(int num)
+	{
+		int[] a = Methods.toArray(num);
+		for(int i = 1; i < a.length; i++)
+		{
+			String s = "";
+			for(int j = 0; j < a.length; j++)
+			{
+				s += a[(j + i) % a.length];
 			}
-		}
-		return ans;
-	}
-	
-	public static boolean rotations(int num)
-	{
-		int[] array = toArray(num);
-		int digits = (int)(Math.log10(num)) + 1;
-		for(int x = 0; x < digits - 1; x++)
-		{
-			int[] temp = Arrays.copyOf(array, digits);
-			temp[0] = array[digits - 1];
-			for(int a = 1; a < digits; a++)
-				temp[a] = array[a-1];
-			
-			
-			array = temp;
-			
-			
-			if(!checkPrime(toInt(array)))
+			if(!Methods.checkPrime(Integer.parseInt(s)))
 				return false;
 		}
 		return true;
 	}
 	
-	public static int solve()
+	public static int solve(int limit)
 	{
-		boolean[] nums = sieve(1000000);
-		int count = 13;
-		for(int x = 101; x < nums.length; x += 2)
+		int count = 0;
+		ArrayList<Integer> sieve = Methods.sieve(limit);
+		
+		for(int primes: sieve)
 		{
-			if(nums[x])
-				if(rotations(x))
-					count++;
+			if(checkRotations(primes))
+				count++;
 		}
-		return count;	
+		return count;
 	}
 	
 	public static void main(String[] args)
 	{
-		System.out.println(solve());
+		long startTime = System.currentTimeMillis();
+		System.out.println(solve(1000000));
+		long endTime   = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		System.out.println("Total time: " + (1.0 * totalTime/1000) + " seconds");
 	}
 }

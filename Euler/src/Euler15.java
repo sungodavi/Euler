@@ -13,15 +13,18 @@ public class Euler15
 		}
 		return (long)(ans);
 	}
-	public static long pascalsTriangle(int size)
+	public static long solve(int size)
 	{
 		return choose(size*2, size);
 	}
 	
 	public static void main(String[] args)
 	{
-		long x = pascalsTriangle(20);
-		System.out.println(x);
+		long startTime = System.currentTimeMillis();
+		System.out.println(solve(20));
+		long endTime   = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		System.out.println("Total time: " + (1.0 * totalTime/1000) + " seconds");
 	}
 
 }

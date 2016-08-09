@@ -9,12 +9,11 @@ public class Euler71
 	}
 	public static int[] solve(int d)
 	{
-		double limit = 1.0 * 3/7;
 		int num = 0, denom = 1;
 		for(; d >= 2; d--)
 		{
-			double fraction = 1.0*getNumerator(d)/d;
-			if(fraction < 3.0/7 && fraction > 1.0*num/denom)
+			double fraction = 1.0 * getNumerator(d) / d;
+			if(fraction < 3.0 / 7 && fraction > 1.0 * num / denom)
 			{
 				denom = d;
 				num = getNumerator(d);

@@ -6,14 +6,16 @@ public class Euler53
 	public static BigInteger combo(int n, int r)
 	{
 		BigInteger ans = BigInteger.ONE;
-		for(int x = n; x > r; x--)
+		int max = Integer.max(r, n-r);
+		int min = Integer.min(r, n-r);
+		for(int x = n; x > max; x--)
 		{
-			ans = ans.multiply(new BigInteger(x + ""));
+			ans = ans.multiply(BigInteger.valueOf(x));
 		}
 		
-		for(int x = 2; x <= n-r; x++)
+		for(int x = 2; x <= min; x++)
 		{
-			ans = ans.divide(new BigInteger(x + ""));
+			ans = ans.divide(BigInteger.valueOf(x));
 		}
 		return ans;
 	}

@@ -5,8 +5,8 @@ public class Euler57
 	{
 		BigInteger num1 = BigInteger.ONE;
 		BigInteger denom1 = BigInteger.ONE;
-		BigInteger num2 = new BigInteger("3");
-		BigInteger denom2 = new BigInteger("2");
+		BigInteger num2 = BigInteger.valueOf(3);
+		BigInteger denom2 = BigInteger.valueOf(2);
 		for(int i = 1; i < times; i++)
 		{
 			BigInteger temp1 = num2;

@@ -1,16 +1,6 @@
 
 public class Euler41 
 {
-	public static int fact(int num)
-	{
-		int ans = 1;
-		for(int x = 2; x <= num; x++)
-		{
-			ans *= x;
-		}
-		return ans;
-	}
-	
 	public static int[] build(int num)
 	{
 		int[] ans = new int[num];
@@ -29,32 +19,11 @@ public class Euler41
 		return array;
 	}
 	
-	public static long toInt(int[] array)
-	{
-		long ans = 0;
-		for(int x = 0; x< array.length; x++)
-		{
-			ans += array[x] * Math.pow(10,array.length - x - 1);
-		}
-		return ans;
-	}
-	
-	public static boolean checkPrime(long num)
-	{
-		if(num % 2 == 0)
-			return false;
-		for(int x = 3; x <= Math.sqrt(num); x++)
-		{
-			if(num % x == 0)
-				return false;
-		}
-		return true;
-	}
 	
 	public static long permutations(int[] a)
 	{
 		long ans = 0;
-		for(int i = 0; i < fact(a.length); i++)
+		for(int i = 0; i < Methods.fact(a.length); i++)
 		{
 			int j = a.length - 2;
 			int l = j + 1;
@@ -74,9 +43,10 @@ public class Euler41
 				l--;
 				k++;
 			}
-			//System.out.println(toInt(a));
-			if(checkPrime(toInt(a)) && toInt(a) > ans)
-				ans = toInt(a);
+
+			int num = Methods.toInt(a);
+			if(Methods.checkPrime(num) && num > ans)
+				ans = num;
 		}
 		return ans;
 	}
@@ -96,7 +66,11 @@ public class Euler41
 	
 	public static void main(String[] args)
 	{
+		long startTime = System.currentTimeMillis();
 		long x = solve();
 		System.out.println(x);
+		long endTime   = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		System.out.println("Total time: " + (1.0 * totalTime/1000) + " seconds");
 	}
 }

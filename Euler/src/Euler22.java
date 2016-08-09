@@ -9,11 +9,10 @@ public class Euler22
 		Scanner scan  = new Scanner(new File("names.txt"));
 		String s = scan.next();
 		array = s.split(",");
-		for(int x=0; x< array.length; x++)
-		{
-			array[x] = array[x].substring(1, array[x].length() -1);
-			//System.out.println(array[x]);
-		}
+		
+		for(String x: array)
+			x = x.substring(1, x.length() -1);
+		
 		Arrays.sort(array);
 		scan.close();
 		
@@ -22,29 +21,30 @@ public class Euler22
 	public static int digitMode(String s)
 	{
 		int ans = 0;
-		for(int x = 0 ; x < s.length(); x++)
-		{
-			ans += letters.indexOf(s.charAt(x)) + 1;
-			//System.out.println(ans);
-		}
+		char[] a = s.toCharArray();
+		for(char letter: a)
+			ans += letters.indexOf(letter) + 1;
+		
 		return ans;
 	}
 	
 	public static long solve()
 	{
 		long ans = 0;
-		for(int x=0; x< array.length; x++)
-		{
+		for(int x = 0; x < array.length; x++)
 			ans += digitMode(array[x]) * (x+1);
-			System.out.println(ans);
-		}
+		
 		return ans;
 	}
 	public static void main(String[] args) throws IOException
 	{
+		long startTime = System.currentTimeMillis();
 		fill();
 		long x = solve();
 		System.out.println(x);
+		long endTime   = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		System.out.println("Total time: " + (1.0 * totalTime/1000) + " seconds");
 	}
 
 }

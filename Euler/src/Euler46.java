@@ -1,73 +1,36 @@
 import java.util.ArrayList;
-import java.util.Arrays;
-
 
 public class Euler46 
 {
-	public static ArrayList<Integer> sieve(int num)
-	{
-		boolean[] ans = new boolean[num + 1];
-		Arrays.fill(ans, true);
-		ans[0] = false;
-		ans[1] = false;
-		for(int i = 2; i <= Math.sqrt(num); i++)
-		{
-			for(int j = 2 * i; j <= num; j+= i)
-			{
-				ans[j] = false;
-			}
-		}
-		
-		ArrayList<Integer> list = new ArrayList<Integer>();
-		for(int x = 0; x < ans.length; x++)
-		{
-			if(ans[x])
-				list.add(x);
-		}
-		
-		return list;
-	}
-	
-	public static boolean checkPrime(int num)
-	{
-		if(num % 2 == 0)
-			return false;
-		for(int x = 3; x <= Math.sqrt(num); x += 2)
-		{
-			if(num % x == 0)
-				return false;
-		}
-		return true;
-	}
 	public static int solve()
 	{
-		boolean check = false;
-		int x = 3;
-		ArrayList<Integer> primes = sieve(100000);
-		while(!check)
+		int x = 35;
+		boolean found = false;
+		while(true)
 		{
-			if(x % 2 == 1 && !checkPrime(x))
+			x+=2;
+			if(Methods.checkPrime(x))
+				continue;
+			found = true;
+			for(int i = 1; x - 2 * i * i > 2; i++)
 			{
-				outerloop:
-				for(int a = 0; primes.get(a) < x; a++)
+				if(Methods.checkPrime(x - 2 * i * i))
 				{
-					for(int b = 1; primes.get(a) + 2 * b * b <= x; b++)
-						if(primes.get(a) + 2 * b * b == x)
-						{
-							System.out.println(x);
-							x += 2;
-							break outerloop;
-						}
+					found = false;
+					break;
 				}
-			return x;
 			}
-			x += 2;
+			if(found)
+				return x;
 		}
-		return 2;
 	}
 	
 	public static void main(String[] args)
 	{
+		long startTime = System.currentTimeMillis();
 		System.out.println(solve());
+		long endTime   = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		System.out.println("Total time: " + (1.0 * totalTime/1000) + " seconds");
 	}
 }

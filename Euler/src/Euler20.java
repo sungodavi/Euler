@@ -7,10 +7,8 @@ public class Euler20
 	{
 		BigInteger ans = new BigInteger("1");
 		for(int x=1; x <= num; x++)
-		{
 			ans = ans.multiply(BigInteger.valueOf(x));
-			//System.out.println(ans);
-		}
+		
 		return ans;
 	}
 	
@@ -28,8 +26,12 @@ public class Euler20
 	}
 	public static void main(String[] args)
 	{
+		long startTime = System.currentTimeMillis();
 		long x = solve(100);
 		System.out.println(x);
+		long endTime   = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		System.out.println("Total time: " + (1.0 * totalTime/1000) + " seconds");
 	}
 
 }

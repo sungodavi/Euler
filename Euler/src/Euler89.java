@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 public class Euler89 
 {
-	private static Map roman = new HashMap();
+	private static Map<String,Integer> roman = new HashMap<String,Integer>();
 	private static String Roman;
 	private static int arabic;
 	private static String improved;
@@ -30,7 +30,6 @@ public class Euler89
 	public void toArabic()
 	{
 		int ans = 0;
-		int length = Roman.length();
 		Object temp;
 		String r = Roman;
 		while(r.length() > 0)
@@ -147,6 +146,7 @@ public class Euler89
 	}
 	public static void main(String[] args) throws IOException
 	{
+		long startTime = System.currentTimeMillis();
 		Scanner scan = new Scanner(new File("89.txt"));
 		long ans = 0;
 		while(scan.hasNext())
@@ -156,6 +156,9 @@ public class Euler89
 			ans += num.solve();
 		}
 		System.out.println(ans);
+		long endTime   = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		System.out.println("Total time: " + (1.0 * totalTime/1000) + " seconds");
 	}
 
 }

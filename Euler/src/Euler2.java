@@ -12,9 +12,13 @@ public class Euler2 {
 		
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+	{
+		long startTime = System.currentTimeMillis();
 		fib(1,2);
 		System.out.println(count);
-
-}
+		long endTime   = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		System.out.println("Total time: " + (1.0 * totalTime/1000) + " seconds");
+	}
 }

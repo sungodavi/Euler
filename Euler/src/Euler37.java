@@ -2,20 +2,7 @@
 public class Euler37 
 {
 	public static int counter = 0;
-	public static boolean checkPrime(int num)
-	{
-		if(num == 1)
-			return false;
-		if(num > 2 && num % 2 == 0)
-			return false;
-		for(int x = 3; x <= Math.sqrt(num); x++)
-		{
-			if(num % x == 0)
-				return false;
-		}
-		return true;
-	}
-	
+
 	public static boolean checkTrunc(int num)
 	{
 		int digits = (int)(Math.log10(num)) + 1;
@@ -25,7 +12,7 @@ public class Euler37
 		{
 			temp /= 10;
 			temp2 %= Math.pow(10, digits - x);
-			if(!checkPrime(temp) || !checkPrime(temp2))
+			if(!Methods.checkPrime(temp) || !Methods.checkPrime(temp2))
 				return false;
 		}
 		return true;
@@ -37,7 +24,7 @@ public class Euler37
 		int x = 11;
 		while(counter < 11)
 		{
-			if(checkPrime(x))
+			if(Methods.checkPrime(x))
 			{
 				if(checkTrunc(x))
 				{
@@ -46,14 +33,18 @@ public class Euler37
 				}
 
 			}
-			x+=2;
+			x += 2;
 		}
 		return sum;
 	}
 	
 	public static void main(String[] args)
 	{
+		long startTime = System.currentTimeMillis();
 		int x = solve();
 		System.out.println(x);
+		long endTime   = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		System.out.println("Total time: " + (1.0 * totalTime/1000) + " seconds");
 	}
 }

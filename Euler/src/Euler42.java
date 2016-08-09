@@ -45,7 +45,7 @@ public class Euler42
 		return false;
 	}
 	
-	public static void main(String[] args) throws IOException
+	public static int solve() throws IOException
 	{
 		fill();
 		int count = 0;
@@ -57,7 +57,15 @@ public class Euler42
 				count ++;
 			}
 		}
-		System.out.println(count);
+		return count;
+	}
+	public static void main(String[] args) throws IOException
+	{
+		long startTime = System.currentTimeMillis();
+		System.out.println(solve());
+		long endTime   = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		System.out.println("Total time: " + (1.0 * totalTime/1000) + " seconds");
 	}
 
 }

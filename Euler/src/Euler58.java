@@ -1,19 +1,5 @@
 public class Euler58 
 {
-	public static boolean checkPrime(int num)
-	{
-		if(num == 1)
-			return false;
-		if(num == 2)
-			return true;
-		if(num % 2 == 0)
-			return false;
-		for(int i = 3; i <= Math.sqrt(num); i+=2)
-			if(num % i == 0)
-				return false;
-		return true;
-	}
-
 	public static int solve()
 	{
 		double percent = 100;
@@ -28,7 +14,7 @@ public class Euler58
 			for(int i = 1; i <= 4; i++)
 			{
 				corner += side - 1;
-				if(checkPrime(corner))
+				if(Methods.checkPrime(corner))
 					count++;
 			}
 			percent = 100.0 * count/(2 * side - 1);

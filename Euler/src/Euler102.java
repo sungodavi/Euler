@@ -3,7 +3,7 @@ import java.io.*;
 import java.awt.*;
 public class Euler102 
 {
-	public static void main(String[] args) throws IOException
+	public static int solve() throws IOException
 	{
 		Point p = new Point(0,0);
 		Point a,b,c;
@@ -26,6 +26,15 @@ public class Euler102
 				System.out.println("Triangle (" + a.x + "," + a.y + ")" + "," + "(" + c.x + "," + c.y + ")" + "," + "(" + c.x + "," + c.y + ")" + "DOES NOT contains origin");
 
 		}
-		System.out.println(count);
+		scan.close();
+		return count;
+	}
+	public static void main(String[] args) throws IOException
+	{
+		long startTime = System.currentTimeMillis();
+		System.out.println(solve());
+		long endTime   = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		System.out.println("Total time: " + (1.0 * totalTime/1000) + " seconds");
 	}
 }

@@ -33,7 +33,7 @@ public class Methods
 	    BigInteger div2 = div;
 	    // Loop until we hit the same value twice in a row, or wind
 	    // up alternating.
-	    for(;;) {
+	    while(true) {
 	        BigInteger y = div.add(x.divide(div)).shiftRight(1);
 	        if (y.equals(div) || y.equals(div2))
 	            return y;
@@ -75,31 +75,40 @@ public class Methods
 		return x;
 	}
 	
-	public static BigInteger convert(long num)
-	{
-		return new BigInteger(num + "");
-	}
-	
 	public static ArrayList<Integer> sieve(int num)
 	{
 		boolean ans[] = new boolean[num + 1];
 		ArrayList<Integer> sieve = new ArrayList<Integer>();
-		Arrays.fill(ans, true);
-		ans[0] = false;
-		ans[1] = false;
-		for(int i = 2; i<= Math.ceil(Math.sqrt(num)); i++)
-		{
+		ans[0] = true;
+		ans[1] = true;
+		int sqrt = (int)Math.sqrt(num);
+		for(int i = 2; i<= sqrt; i++)
 			for(int j = i*2; j <= num; j += i)
-			{
-				ans[j] = false;
-			}
-		}
+				ans[j] = true;
 		
 		for(int i = 0; i < ans.length; i++)
-		{
-			if(ans[i])
+			if(!ans[i])
 				sieve.add(i);
-		}
+		
+		return sieve;
+	}
+	
+	public static ArrayList<Integer> sieve(int start, int end)
+	{
+		boolean ans[] = new boolean[end + 1];
+		ArrayList<Integer> sieve = new ArrayList<Integer>();
+		
+		for(int i = 0; i < start; i++)
+			ans[i] = true;
+		
+		for(int i = 2; i<= Math.ceil(Math.sqrt(end)); i++)
+			for(int j = i*2; j <= end; j += i)
+				ans[j] = true;
+		
+		for(int i = 0; i < ans.length; i++)
+			if(!ans[i])
+				sieve.add(i);
+		
 		return sieve;
 	}
 	
@@ -112,35 +121,10 @@ public class Methods
 		if(num % 2 == 0)
 			return false;
 		for(int i = 3; i <= Math.sqrt(num); i += 2)
-		{
 			if(num % i == 0)
 				return false;
-		}
-		return true;
-	}
-	public static ArrayList<Integer> sieve(int start, int end)
-	{
-		boolean ans[] = new boolean[end + 1];
-		ArrayList<Integer> sieve = new ArrayList<Integer>();
-		Arrays.fill(ans, true);
-		for(int i = 0; i < start; i++)
-		{
-			ans[i] = false;
-		}
-		for(int i = 2; i<= Math.ceil(Math.sqrt(end)); i++)
-		{
-			for(int j = i*2; j <= end; j += i)
-			{
-				ans[j] = false;
-			}
-		}
 		
-		for(int i = 0; i < ans.length; i++)
-		{
-			if(ans[i])
-				sieve.add(i);
-		}
-		return sieve;
+		return true;
 	}
 	
 	public static int toInt(int[] array)
@@ -187,7 +171,7 @@ public class Methods
 		BigInteger num = BigInteger.ONE;
 		BigInteger denom = BigInteger.ONE;
 		BigDecimal decimal = BigDecimal.valueOf(d);
-		String temp = decimal + "";
+		String temp = decimal.toString();
 		int index = temp.length() - temp.indexOf(".") - 1;
 
 		
@@ -215,26 +199,6 @@ public class Methods
 		}
 		return a;
 	}
-	public static String toString(Collection a)
-	{
-		return Arrays.toString(a.toArray());
-	}
-	
-	public static int totient(int num)
-	{
-		ArrayList<Integer> sieve = sieve(num);
-		double ans = num;
-		for(int i = 0; sieve.get(i) <= num/2; i++)
-		{
-			int temp = sieve.get(i);
-			if(num % temp == 0)
-			{
-				ans *= temp-1;
-				ans /= temp;
-			}
-		}
-		return (int)ans;
-	}
 	
 	public static boolean isPerfectSquare(long num)
 	{
@@ -242,7 +206,11 @@ public class Methods
 		return sqrt * sqrt == num;
 	}
 	
-	
+	public static boolean isPerfectSquare(BigInteger num)
+	{
+		BigInteger sqrt = sqrt(num);
+		return sqrt.multiply(sqrt).equals(num);
+	}
 	public static long fact(long num)
 	{
 		long ans = 1;

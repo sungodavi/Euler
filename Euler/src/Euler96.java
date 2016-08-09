@@ -232,10 +232,9 @@ public class Euler96
 		}
 		for(int i = r/3*3; i < r/3*3 + 3; i++)
 			for(int j = c/3*3; j < c/3*3+3; j++)
-			{
 				if(!(i == r && j == c) && puzzle[i][j] == value)
 					return false;
-			}
+		
 		return true;
 	}
 	public void backTrace()
@@ -286,6 +285,7 @@ public class Euler96
 			puzzle.display();
 			sum += puzzle.getCorner();				
 		}
+		scan.close();
 		System.out.println(sum);
 		
 	}

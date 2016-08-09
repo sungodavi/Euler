@@ -1,39 +1,21 @@
 
 public class Euler30 
-{
-	
-	public static int[] digits(int num)
-	{
-		int[] array = new int[(int)(Math.log10(num) + 1)];
-		for(int x = 0; x < array.length; x++)
-		{
-			array[x] = num % 10;
-			num /= 10;
-		}
-		
-		return array;
-	}
-	
+{	
 	public static boolean check(int num)
 	{
-		int[] digits = digits(num);
+		int[] digits = Methods.toArray(num);
 		int ans = 0;
 		for(int x = 0; x < digits.length; x++)
 		{
-			//System.out.println(digits[x]);
 			ans += digits[x] * digits[x] * digits[x] * digits[x] * digits[x];
-			//System.out.println(ans);
 		}
-		//System.out.println();
-		if(ans == num)
-			return true;
-		return false;
+		return ans == num;
 	}
 	
 	public static int solve()
 	{
 		int ans = 0;
-		for(int x=4150; x <= 355000; x++)
+		for(int x = 4150; x <= 355000; x++)
 		{
 			if(check(x))
 			{
@@ -45,8 +27,12 @@ public class Euler30
 	
 	public static void main(String[] args)
 	{
+		long startTime = System.currentTimeMillis();
 		int x = solve();
-		System.out.println(x);		
+		System.out.println(x);
+		long endTime   = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		System.out.println("Total time: " + (1.0 * totalTime/1000) + " seconds");
 	}
 
 }

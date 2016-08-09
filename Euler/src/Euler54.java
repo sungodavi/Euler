@@ -2,22 +2,28 @@ import java.util.*;
 import java.io.*;
 public class Euler54 
 {
-	private Map suit = new HashMap();
-	private char[][] cards = new char[2][5];
-	private Map faces = new HashMap();
-	private int[] f = new int[5];
-	private int[] s = new int[5];
+	private Map<Character,Integer> suit; 
+	private char[][] cards;
+	private Map<Character,Integer> faces;
+	private int[] f;
+	private int[] s;
 	
 	public Euler54(String hand)
 	{
-		String[] temp = hand.split(" ");
+		suit = new HashMap<Character,Integer>();
+		cards = new char[2][5];
+		faces = new HashMap<Character,Integer>();
+		f = new int[5];
+		s = new int[5];
+		String[] input = hand.split(" ");
+		
 		loadMaps();
 		for(int i = 0; i < 5; i++)
 		{
-			cards[0][i] = temp[i].charAt(0);
-			f[i] = (int)faces.get(temp[i].charAt(0));
-			cards[1][i] = temp[i].charAt(1);
-			s[i] = (int)suit.get(temp[i].charAt(1));
+			cards[0][i] = input[i].charAt(0);
+			f[i] = (int)faces.get(input[i].charAt(0));
+			cards[1][i] = input[i].charAt(1);
+			s[i] = (int)suit.get(input[i].charAt(1));
 		}
 		Arrays.sort(f);
 		Arrays.sort(s);
@@ -127,7 +133,7 @@ public class Euler54
 		return 0;
 	}
 	
-	public static void main(String[] args) throws IOException
+	public static int solve() throws IOException
 	{
 		int count = 0;
 		Scanner scan = new Scanner(new File("54.txt"));
@@ -139,7 +145,16 @@ public class Euler54
 			if(Poker.winner(p1,p2))
 				count++;
 		}
-		System.out.println(count);
+		return count;
+	}
+	public static void main(String[] args) throws IOException
+	{
+		long startTime = System.currentTimeMillis();
+		System.out.println(solve());
+		long endTime   = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		System.out.println("Total time: " + (1.0 * totalTime/1000) + " seconds");
+
 	}
 	
 }

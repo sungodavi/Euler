@@ -74,8 +74,7 @@ public class Sort
 	
 	public void seperate(int start, int end)
 	{
-		int middle = end + start;
-		middle /= 2;
+		int middle = (end + start)/2;
 		if(start < end)
 		{
 			seperate(start,middle);
