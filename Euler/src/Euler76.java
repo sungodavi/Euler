@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class Euler76 
 {
 	public static int solve(int num)

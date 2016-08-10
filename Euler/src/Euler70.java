@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-
+import java.util.*;
 public class Euler70 
 {
 	//Euler's Totient Function

@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class Euler75 
 {	
 	public static int p(int m, int n)

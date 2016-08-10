@@ -1,5 +1,3 @@
-import java.util.*;
-import java.awt.*;
 public class Test 
 {
 	public static boolean checkTri(long num)

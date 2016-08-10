@@ -1,6 +1,4 @@
-import java.util.*;
 import java.awt.Point;
-import java.math.*;
 public class Geometry 
 {
 	public static double toDegress(double radian)

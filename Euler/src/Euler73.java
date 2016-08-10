@@ -1,4 +1,3 @@
-import java.util.*;
 public class Euler73 
 {
 	public static long solve(int limit)

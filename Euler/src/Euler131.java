@@ -1,4 +1,3 @@
-import java.util.*;
 public class Euler131 
 {
 	public static boolean check(int x)

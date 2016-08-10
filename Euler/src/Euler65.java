@@ -1,6 +1,5 @@
 import java.math.BigInteger;
 import java.util.*;
-import java.math.*;
 public class Euler65 
 {
 	public static int findE(int num)

@@ -1,6 +1,3 @@
-import java.util.*;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 public class Euler71 
 {	
 	public static int getNumerator(int denominator)

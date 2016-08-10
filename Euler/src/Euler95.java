@@ -20,7 +20,7 @@ public class Euler95
 		int check = num;
 		int chain = 0;
 		boolean found = false;
-		Set aliquot = new HashSet();
+		Set<Integer> aliquot = new HashSet<Integer>();
 		while(aliquot.add(num))
 		{
 			chain++;

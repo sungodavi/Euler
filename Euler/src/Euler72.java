@@ -1,4 +1,3 @@
-import java.util.*;
 public class Euler72 
 {
 	public static long Totient(int num)

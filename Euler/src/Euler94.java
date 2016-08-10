@@ -1,5 +1,3 @@
-import java.math.BigInteger;
-
 public class Euler94 
 {
 	public static boolean check1(long x)
