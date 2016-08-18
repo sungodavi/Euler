@@ -221,6 +221,28 @@ public class Methods
 		return ans;
 	}
 	
+	public static long combo(int n, int r)
+	{
+		long ans = 1;
+		int max = Integer.max(r, n-r);
+		int min = Integer.min(n-r, r);
+		for(int i = n; i > max; i--)
+			ans *= i;
+		for(int i = min; i > 1; i--)
+			ans /= i;
+		return ans;
+	}
+	public static BigInteger bigCombo(int n, int r)
+	{
+		BigInteger ans = BigInteger.ONE;
+		int max = Integer.max(r, n-r);
+		int min = Integer.min(n-r, r);
+		for(int i = n; i > max; i--)
+			ans = ans.multiply(BigInteger.valueOf(i));
+		for(int i = min; i > 1; i--)
+			ans = ans.divide(BigInteger.valueOf(i));
+		return ans;
+	}
 	public static int[][] primeFactorization(long num)
 	{
 		ArrayList<Integer> sieve = sieve((int)Math.sqrt(num) + 1);
