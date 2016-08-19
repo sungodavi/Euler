@@ -13,10 +13,11 @@ public class Euler104
 			temp = f2;
 			f2 = f2.add(f1);
 			f1 = temp;
-			if(count > 2750)
+			if(count > 2749)
 				if(check(f2))
 					break;
 			count++;
+			System.out.println(f2);
 		}
 		return f2;
 		

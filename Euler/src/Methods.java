@@ -127,6 +127,22 @@ public class Methods
 		return true;
 	}
 	
+	public static boolean checkPrime(BigInteger num)
+	{
+		if(num.compareTo(BigInteger.valueOf(2)) < 0)
+			return false;
+		if(num.equals(BigInteger.valueOf(2)))
+			return true;
+		if(num.mod(BigInteger.valueOf(2)).equals(BigInteger.ZERO))
+			return false;
+		for(BigInteger i = BigInteger.valueOf(3); i.compareTo(sqrt(num)) < 0; i = i.add(BigInteger.valueOf(2)))
+		{
+			if(num.mod(i).equals(BigInteger.ZERO))
+				return false;
+		}
+		return true;
+	}
+	
 	public static int toInt(int[] array)
 	{
 		String s = "";
