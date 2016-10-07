@@ -39,6 +39,7 @@ public class Euler11
 		}
 		return ans;
 	}
+	
 	public static long checkVertical()
 	{
 		long ans=0;
@@ -56,6 +57,7 @@ public class Euler11
 		}
 		return ans;
 	}
+	
 	public static long checkDiagonaLeft()
 	{
 		long ans = 0;
