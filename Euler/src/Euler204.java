@@ -1,7 +1,7 @@
 import java.util.*;
 public class Euler204 
 {
-	public static int hamming(int limit, int h)
+	public static int solve(int limit, int h)
 	{
 		
 		ArrayList<Integer> sieve = Methods.sieve(h);

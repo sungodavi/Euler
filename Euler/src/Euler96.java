@@ -43,11 +43,9 @@ public class Euler96
 						solutions[r][c].remove((Integer)puzzle[i][c]);
 					}
 					
-					for(int i = r/3*3; i < r/3*3 + 3; i++)
-					{
-						for(int j = c/3*3; j < c/3*3+3; j++)
-						{
-							if(!(i == r && j==c))
+					for(int i = r / 3*3; i < r / 3*3 + 3; i++)
+						for(int j = c / 3*3; j < c / 3*3 + 3; j++)
+							if(!(i == r && j == c))
 								solutions[r][c].remove((Integer)puzzle[i][j]);
 						}
 					}

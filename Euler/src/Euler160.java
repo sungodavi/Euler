@@ -2,7 +2,7 @@ import java.util.*;
 import java.math.BigInteger;
 public class Euler160 
 {
-	public static int countFactors(int fact, int num)
+	public static long countFactors(long fact, int num)
 	{
 		int sum = 0;
 		for(int i = num; i <= fact; i *= num)
