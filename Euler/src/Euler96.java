@@ -47,8 +47,6 @@ public class Euler96
 						for(int j = c / 3*3; j < c / 3*3 + 3; j++)
 							if(!(i == r && j == c))
 								solutions[r][c].remove((Integer)puzzle[i][j]);
-						}
-					}
 				}
 			}
 		}
@@ -61,6 +59,7 @@ public class Euler96
 			solutions[r][c].clear();
 			solutions[r][c].add(num);
 		}
+		
 		//checks rows and columns
 		for(int i = 0; i < 9; i++)
 		{
@@ -72,13 +71,9 @@ public class Euler96
 		
 		//check box
 		for(int i = r/3*3; i < r/3*3 + 3; i++)
-		{
 			for(int j = c/3*3; j < c/3*3+3; j++)
-			{
 				if(!(i == r && j==c))
 					solutions[i][j].remove(num);
-			}
-		}
 	}
 	
 	public int check(int r, int c)
@@ -273,9 +268,7 @@ public class Euler96
 			{
 				String s = scan.nextLine();
 				for(int j = 0; j < 9; j++)
-				{
 					matrix[i][j] = s.charAt(j) - '0';
-				}
 			}
 			
 			Euler96 puzzle = new Euler96(matrix);

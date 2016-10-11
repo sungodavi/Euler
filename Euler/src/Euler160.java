@@ -4,34 +4,42 @@ public class Euler160
 {
 	public static long countFactors(long fact, int num)
 	{
-		int sum = 0;
-		for(int i = num; i <= fact; i *= num)
+		long sum = 0;
+		for(long i = num; i <= fact; i *= num)
 		{
 			sum += fact/i;
 		}
 		return sum;
 	}
-	
-	public static BigInteger solve(int limit)
+	public static long solve(long limit)
 	{
-		ArrayList<Integer> sieve = Methods.sieve(limit);
-		int[] factors = new int[sieve.size()];
-		BigInteger ans = BigInteger.ONE;
-		
-		for(int i = 0; i < factors.length; i++)
-			factors[i] = countFactors(limit, sieve.get(i));
-		int min = Integer.min(factors[0], factors[2]);
-		factors[0] -= min;
-		factors[2] -= min;
-		for(int i = 0; i < factors.length; i++)
+		long trail = 1;;
+		long fives = countFactors(limit,5);
+		long twos = fives;		
+		for(int i = 2; i <= limit; i++)
 		{
-			ans = ans.multiply(BigInteger.valueOf(sieve.get(i)).pow(factors[i]));
+			int temp = i;
+			while(temp % 2 == 0 && twos > 0)
+			{
+				temp = temp >> 1;
+				twos--;
+			}
+			while(temp % 5 == 0 && fives > 0)
+			{
+				temp /= 5;
+				fives--;
+			}
+			trail *= temp % 100000;
+			trail %= 100000;
+			//System.out.println(i);
 		}
-		return ans.mod(BigInteger.TEN.pow(5));
+		return trail;
 	}
 	
 	public static void main(String[] args)
 	{
-		System.out.println(solve(Integer.MAX_VALUE/2));
+		//long limit = 1000000000000l;
+		for(int limit = 100000; limit < 100010; limit++)
+			System.out.println(solve(limit));
 	}
 }
