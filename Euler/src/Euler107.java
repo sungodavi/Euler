@@ -9,13 +9,11 @@ public class Euler107
 			int min = Integer.MAX_VALUE;
 			for(int c = 0; c < r; c++)
 			{
-				//System.out.print("(" + r + "," + c + ") ");
 				if(a[r][c] != 0)
 					min = Integer.min(min, a[r][c]);
 			}
-			System.out.println(min);
+			
 			sum += min;
-			//System.out.println();
 		}
 		return sum;
 	}
