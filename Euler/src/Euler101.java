@@ -1,14 +1,13 @@
+import java.math.BigInteger;
 import java.util.Arrays;
 
 public class Euler101 
 {
-	public static long determinant(long a[][], int size)
+	public static BigInteger determinant(long a[][], int size)
 	{
 		if(size == 1)
-			return a[0][0];
-		if(size == 2)
-			return a[0][0] * a[1][1] - a[0][1]*a[1][0];
-		long det = 0;
+			return BigInteger.valueOf(a[0][0]);
+		BigInteger det = BigInteger.ZERO;
 		long[][] b = new long[size - 1][size - 1];
 		for(int i = 0; i < size; i++)
 		{
@@ -25,17 +24,17 @@ public class Euler101
 				}
 			}
 			if(i % 2 == 0)
-				det += a[0][i] * determinant(b, size - 1);
+				det = det.add(BigInteger.valueOf(a[0][i]).multiply(determinant(b, size - 1)));
 			else
-				det -= a[0][i] * determinant(b, size - 1);
+				det = det.subtract(BigInteger.valueOf(a[0][i]).multiply(determinant(b, size - 1)));
 		}
 		return det;
 	}
 	
-	public static long[] cramer(long[][] a, long[] ans)
+	public static BigInteger[] cramer(long[][] a, long[] ans)
 	{
-		long det = determinant(a,a.length);
-		long[] solutions = new long[ans.length];
+		BigInteger det = determinant(a,a.length);
+		BigInteger[] solutions = new BigInteger[ans.length];
 		for(int i = 0; i < ans.length; i++)
 		{
 			long[][] aTemp = new long[a.length][a.length];
@@ -54,7 +53,7 @@ public class Euler101
 						aTemp[r][c] = a[r][c];
 					}
 			}
-			solutions[i] = determinant(aTemp,aTemp.length) / det;
+			solutions[i] = determinant(aTemp,aTemp.length).divide(det);
 		}
 		return solutions;
 	}
@@ -75,7 +74,7 @@ public class Euler101
 		}
 		return sum;
 	}
-	public static long[] OP(int degree)
+	public static BigInteger[] OP(int degree)
 	{
 		long[][] system = new long[degree][degree];
 		long[] ans = new long[degree];
@@ -96,70 +95,53 @@ public class Euler101
 		//System.out.println(Arrays.deepToString(system));
 		return cramer(system,ans);
 	}
-	public static long FIT(long[] polynomial)
+	public static BigInteger FIT(BigInteger[] polynomial)
 	{
 		int x = polynomial.length + 1;
-		long num = 0;
+		BigInteger num = BigInteger.ZERO;
 		for(int i = 0; i < polynomial.length; i++)
 		{
-			long temp = polynomial[i];
+			BigInteger temp = polynomial[i];
 			for(int j = polynomial.length - 1; j > i; j--)
 			{
-				temp *= x;
+				temp = temp.multiply(BigInteger.valueOf(x));
 			}
-			num += temp;
+			num = num.add(temp);
 		}
 		return num;
 	}
-	public static long solve(int degree)
+	public static BigInteger solve(int degree)
 	{
-		long sum = 0;
+		BigInteger sum = BigInteger.ZERO;
 		for(int i = 1; i <= degree; i++)
 		{
-			long[] op = OP(i);
-			System.out.println(Arrays.toString(op));
-			for(int j = 1; j <= i; j++)
-			{
-				System.out.println(check(op,j));
-			}
-			sum += FIT(op);
+			BigInteger[] op = OP(i);
+			sum = sum.add(FIT(op));
 		}
 		return sum;
 	}
-	public static long check(long[] a, int val)
+	public static BigInteger check(BigInteger[] a, int val)
 	{
-		long sum = 0;
+		BigInteger sum = BigInteger.ZERO;
 		for(int i = 0; i < a.length; i++)
 		{
-			long temp = a[i];
+			BigInteger temp = a[i];
 			for(int j = a.length - 1; j > i; j--)
 			{
-				temp *= val;
+				temp = temp.multiply(BigInteger.valueOf(val));
 			}
 			//System.out.println("sum : " + sum);
-			sum += temp;
+			sum = sum.add(temp);
 		}
 		return sum;
 	}
+	
 	public static void main(String[] args)
 	{
-		/*int[][] a = {{5,4,6},{3,2,8},{1,9,7}};
-		int[][] system = {{2,1,1},{1,-1,-1},{1,2,1}};
-		int[] ans = {3,0,0};
-		int[][] OPTest = {{1,1},{2,1}};
-		int[] OPTestAns = {1,8};
-		System.out.println(Arrays.toString(cramer(OPTest,OPTestAns)));
-		System.out.println(determinant(a, 3));
-		System.out.println(Arrays.toString(cramer(system,ans)));
-		int[] op = OP(4);
-		System.out.println(Arrays.toString(OP(1)));
-		System.out.println(FIT(op));*/
-		for(int i = 1; i <= 10; i++)
-		{
-			System.out.println(i + ": " + f(i));
-		}
-		System.out.println(Arrays.toString(OP(8)));
-		//System.out.println(solve(10));
-		//System.out.println(Arrays.toString(OP(11)));
+		long startTime = System.currentTimeMillis();
+		System.out.println(solve(10));
+		long endTime = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		System.out.println("Total time: " + (1.0 * totalTime/1000) + " seconds");
 	}
 }

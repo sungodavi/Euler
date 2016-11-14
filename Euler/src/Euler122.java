@@ -1,29 +1,79 @@
-import java.util.Arrays;
+import java.util.*;
 
-public class Euler122 
+class Node
 {
-	public static long solve(int num)
+	int value;
+	int level;
+	Node parent;
+	ArrayList<Node> children;
+	public Node(int num, int level, Node p)
 	{
-		long[] a = new long[num + 1];
-		for(int i = 2; i <= num; i++)
+		value = num;
+		children = new ArrayList<Node>();
+		parent = p;
+	}
+	public String toString()
+	{
+		String s;
+		if(parent != null)
+			s = parent.value + "->" + value + "->";
+		else
+			s = value + "->";
+		for(Node n: children)
 		{
-			long min = Long.MAX_VALUE;
-			for(int j = i - 1; j >= 1.0 * i/2; j--)
-			{
-				if(i == 2 * j)
-					min = Long.min(min, a[j] + 1);
-				else
-					min = Long.min(min, a[j] + a[i-j] + 1);
-				System.out.println(i + " " + j + " " + min);
-			}
-			a[i] = min;
+			s += n.value + ", ";
 		}
-		System.out.println(Arrays.toString(a));
-		return a[num];
+		return s.substring(0,s.length() -2);
+	}
+}
+
+class Tree
+{
+	Node tree;
+	public Tree()
+	{
+		tree = new Node(1, 1, null);
+	}
+	public void create(int limit)
+	{
+		create(tree, limit);
+	}
+	private void create(Node n, int limit)
+	{
+		//System.out.println("recurse: " + limit);
+		if(limit == 0)
+			return;
+		Node p = n;
+		while(p != null)
+		{
+			Node node = new Node(p.value + n.value,n);
+			System.out.println(node);
+			n.children.add(node);
+			p = p.parent;
+		}
+		for(Node node: n.children)
+			create(node,limit - 1);
 	}
 	
+	public void levelOrderTraversal()
+	{
+		Queue<Node> q = new LinkedList<Node>();
+		q.add(tree);
+		while(!q.isEmpty())
+		{
+			Node n = q.poll();
+			System.out.println(n.value);
+			for(Node child: n.children)
+				q.add(child);
+		}
+	}
+}
+public class Euler122 
+{
 	public static void main(String[] args)
 	{
-		System.out.println(solve(15));
+		Tree t = new Tree();
+		t.create(3);
+		t.levelOrderTraversal();
 	}
 }

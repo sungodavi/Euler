@@ -104,7 +104,6 @@ public class Euler96
 				if(found)
 					return (int)num;
 				
-				
 				//check rows
 				found = true;
 				for(int i = 0; i < 9; i++)

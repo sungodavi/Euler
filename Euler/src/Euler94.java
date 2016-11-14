@@ -10,14 +10,14 @@ public class Euler94
 	}
 	public static void main(String[] args)
 	{
-		int count = 0;
-		for(int x = 3; x < 333333333; x += 2)
+		int sum = 0;
+		for(int x = 3; x <= 333333334; x += 2)
 		{
 			if(check1(x))
-				count++;
-			if(check2(x))
-				count++;
+				sum += (3*x + 1);
+			if((3*x - 1 < 1000000000) && check2(x))
+				sum += (3*x - 1);
 		}
-		System.out.println(count);
+		System.out.println(sum);
 	}
 }
