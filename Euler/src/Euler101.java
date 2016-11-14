@@ -1,14 +1,12 @@
 import java.util.Arrays;
-
+import java.math.BigInteger;
 public class Euler101 
 {
-	public static long determinant(long a[][], int size)
+	public static BigInteger determinant(long a[][], int size)
 	{
 		if(size == 1)
-			return a[0][0];
-		if(size == 2)
-			return a[0][0] * a[1][1] - a[0][1]*a[1][0];
-		long det = 0;
+			return BigInteger.valueOf(a[0][0]);
+		BigInteger det = BigInteger.ZERO;
 		long[][] b = new long[size - 1][size - 1];
 		for(int i = 0; i < size; i++)
 		{
@@ -25,17 +23,18 @@ public class Euler101
 				}
 			}
 			if(i % 2 == 0)
-				det += a[0][i] * determinant(b, size - 1);
+				det = det.add(BigInteger.valueOf(a[0][i]).multiply(determinant(b, size - 1)));
 			else
-				det -= a[0][i] * determinant(b, size - 1);
+				det = det.subtract(BigInteger.valueOf(a[0][i]).multiply(determinant(b, size - 1)));
+			System.out.println(det);
 		}
 		return det;
 	}
 	
 	public static long[] cramer(long[][] a, long[] ans)
 	{
-		long det = determinant(a,a.length);
-		long[] solutions = new long[ans.length];
+		BigInteger det = determinant(a,a.length);
+		BigInteger[] solutions = new BigInteger[ans.length];
 		for(int i = 0; i < ans.length; i++)
 		{
 			long[][] aTemp = new long[a.length][a.length];
@@ -54,7 +53,7 @@ public class Euler101
 						aTemp[r][c] = a[r][c];
 					}
 			}
-			solutions[i] = determinant(aTemp,aTemp.length) / det;
+			solutions[i] = determinant(aTemp,aTemp.length).divide(det);
 		}
 		return solutions;
 	}
@@ -84,7 +83,7 @@ public class Euler101
 			ans[r] = f(r+1);
 			for(int c = 0; c < degree; c++)
 			{
-				int x = r+1;
+				int x = r + 1;
 				int num = 1;
 				for(int j = degree - 1; j > c; j--)
 				{
@@ -159,7 +158,7 @@ public class Euler101
 			System.out.println(i + ": " + f(i));
 		}
 		System.out.println(Arrays.toString(OP(8)));
-		//System.out.println(solve(10));
+		//System.out.println(solve(5));
 		//System.out.println(Arrays.toString(OP(11)));
 	}
 }
