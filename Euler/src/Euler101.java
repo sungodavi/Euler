@@ -1,6 +1,6 @@
 import java.math.BigInteger;
 import java.util.Arrays;
-
+import java.math.BigInteger;
 public class Euler101 
 {
 	public static BigInteger determinant(long a[][], int size)
@@ -83,7 +83,7 @@ public class Euler101
 			ans[r] = f(r+1);
 			for(int c = 0; c < degree; c++)
 			{
-				int x = r+1;
+				int x = r + 1;
 				int num = 1;
 				for(int j = degree - 1; j > c; j--)
 				{

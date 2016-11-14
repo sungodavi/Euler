@@ -10,11 +10,10 @@ public class Euler64
 		int count = 0;
 		do
 		{
-			int temp = denominator;
 			a -= (int)((Math.sqrt(num) + a)/denominator) * denominator;
-			denominator = (num - a * a)/temp;
+			denominator = (num - a * a)/denominator;
 			a *= -1;
-			count++;
+			count++;	
 		}while(a != target || denominator != 1);
 		
 		return count;
