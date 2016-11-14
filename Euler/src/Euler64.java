@@ -19,11 +19,10 @@ public class Euler64
 		return count;
 		
 	}
-	
-	public static void main(String[] args)
+	public static int solve(int limit)
 	{
 		int count = 0;
-		for(int i = 2; i <= 10000; i++)
+		for(int i = 2; i <= limit; i++)
 		{
 			if(!Methods.isPerfectSquare(i))
 			{
@@ -32,7 +31,15 @@ public class Euler64
 					count++;
 			}
 		}
-		System.out.println("the continued fractions of square roots <= 10,000 is odd " + count + " times.");
+		return count;
+	}
+	public static void main(String[] args)
+	{
+		long startTime = System.currentTimeMillis();
+		System.out.println(solve(10000));
+		long endTime = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		System.out.println("Total time: " + (1.0 * totalTime/1000) + " seconds");
 	}
 
 }
