@@ -16,7 +16,7 @@ public class Euler211
 				e++;
 				n /= prime;
 			}
-			sum *= (Math.pow(prime, 2*e+2) - 1)/(prime*prime - 1);
+			sum *= (Math.pow(prime, 2 * (e+1)) - 1)/(prime * prime - 1);
 			index++;
 		}
 		return sum;
@@ -36,7 +36,7 @@ public class Euler211
 	{
 		int limit = 64000000;
 		sieve = Methods.sieve(limit);
-		for(int i = 1; i <= 64000000; i++)
+		for(int i = 1; i <= limit; i++)
 		{
 			System.out.println(i);
 			sumDivisors(i);

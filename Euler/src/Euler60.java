@@ -15,6 +15,7 @@ public class Euler60
 		}
 		return pairs;
 	}
+	
 	public static boolean hasPairs(int p)
 	{
 		int p1 = sieve.get(p);
@@ -27,6 +28,7 @@ public class Euler60
 		}
 		return false;
 	}
+	
 	public static boolean checkConcat(int p1, int p2)
 	{
 		return Methods.checkPrime(Integer.parseInt("" + p1 + p2)) && 
