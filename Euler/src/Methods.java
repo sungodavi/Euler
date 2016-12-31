@@ -82,9 +82,10 @@ public class Methods
 		ans[0] = true;
 		ans[1] = true;
 		int sqrt = (int)Math.sqrt(num);
-		for(int i = 2; i<= sqrt; i++)
-			for(int j = i*2; j <= num; j += i)
-				ans[j] = true;
+		for(int i = 2; i <= sqrt; i++)
+			if(!ans[i])
+				for(int j = i*2; j <= num; j += i)
+					ans[j] = true;
 		
 		for(int i = 0; i < ans.length; i++)
 			if(!ans[i])
@@ -101,9 +102,10 @@ public class Methods
 		for(int i = 0; i < start; i++)
 			ans[i] = true;
 		
-		for(int i = 2; i<= Math.ceil(Math.sqrt(end)); i++)
-			for(int j = i*2; j <= end; j += i)
-				ans[j] = true;
+		for(int i = 2; i<= Math.sqrt(end); i++)
+			if(!ans[i])
+				for(int j = i*2; j <= end; j += i)
+					ans[j] = true;
 		
 		for(int i = 0; i < ans.length; i++)
 			if(!ans[i])
@@ -294,30 +296,108 @@ public class Methods
 	{
 		int count = 0;
 		for(boolean b: a)
-		{
 			if(b == check)
 				count++;
-		}
+		
 		return count;
 	}
 	public static int count(int[] a, int check)
 	{
 		int count = 0;
 		for(int b: a)
-		{
 			if(b == check)
 				count++;
-		}
+		
 		return count;
 	}
 	public static int count(double[] a, double check)
 	{
 		int count = 0;
 		for(double b: a)
-		{
 			if(b == check)
 				count++;
-		}
+		
 		return count;
+	}
+	
+	public static ArrayList<Integer> divisors(int num)
+	{
+		if(num <= 0)
+			throw new IllegalArgumentException();
+		ArrayList<Integer> factors = new ArrayList<Integer>();
+		factors.add(1);
+		int powerFactor = 1;
+		while((num & 1) == 0)
+		{
+			powerFactor <<= 1;
+			factors.add(powerFactor);
+			num >>= 1;
+		}
+		int factor = 3;
+		int limit = factors.size();
+		powerFactor = 1;
+		while(factor * factor <= num)
+		{
+			if(num % factor == 0)
+			{
+				powerFactor *= factor;
+				for(int i = 0; i < limit; i++)
+				{
+					factors.add(powerFactor * factors.get(i));
+				}
+				num /= factor;
+			}
+			else
+			{
+				powerFactor = 1;
+				limit = factors.size();
+				factor += 2;
+			}
+		}
+		if(num > 1)
+		{
+			if(num != factor)
+			{
+				limit = factors.size();
+				powerFactor = 1;
+			}
+			powerFactor *= num;
+			for(int i = 0; i < limit; i++)
+			{
+				factors.add(powerFactor * factors.get(i));
+			}
+		}
+		Collections.sort(factors);
+		return factors;
+	}
+	
+	public static int totient(int num)
+	{
+		int ans = num;
+		if((num & 1) == 0)
+		{
+			ans >>= 1;
+			while((num & 1) == 0)
+				num >>= 1;
+		}
+		ArrayList<Integer> sieve = Methods.sieve(num);
+		int index = 1;
+		while(num > 1)
+		{
+			int prime = sieve.get(index++);
+			if(num % prime == 0)
+			{
+				ans = ans / prime * (prime - 1);
+				while(num % prime == 0)
+					num /= prime;
+			}
+		}
+		return ans;
+	}
+	
+	public static void main(String[] args)
+	{
+		int x = 36;
+		System.out.println(totient(2048));
 	}
 }

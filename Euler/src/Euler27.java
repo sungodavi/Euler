@@ -13,7 +13,7 @@ public class Euler27
 	{
 		ArrayList<Integer> sieve = Methods.sieve(1000);
 		int[] max = new int[3];
-		for(int a = -999; a < 1000; a++)
+		for(int a = -999; a < 1000; a += 2)
 		{
 			for(int b : sieve)
 			{
@@ -43,7 +43,7 @@ public class Euler27
 		System.out.println(x);
 		long endTime   = System.currentTimeMillis();
 		long totalTime = endTime - startTime;
-		System.out.println("Total time: " + (1.0 * totalTime/1000) + " seconds");
+		System.out.println("Total Time: " + (1.0 * totalTime/1000) + " seconds");
 	}
 
 }

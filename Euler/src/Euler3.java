@@ -7,7 +7,7 @@ public class Euler3
 		int largestFactor = 1;
 		while(num % 2 == 0)
 		{
-			num /= 2;
+			num = num >> 1;
 			largestFactor = 2;
 		}
 
@@ -46,7 +46,7 @@ public class Euler3
 		System.out.println(output);
 		long endTime   = System.currentTimeMillis();
 		long totalTime = endTime - startTime;
-		System.out.println("Total time: " + (1.0 * totalTime/1000) + " seconds");
+		System.out.println("Total Time: " + (1.0 * totalTime/1000) + " seconds");
 	}
 
 

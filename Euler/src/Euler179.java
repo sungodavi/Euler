@@ -24,6 +24,6 @@ public class Euler179
 		System.out.println(solve(10000000));
 		long endTime   = System.currentTimeMillis();
 		long totalTime = endTime - startTime;
-		System.out.println("Total time: " + (1.0 * totalTime/1000) + " seconds");
+		System.out.println("Total Time: " + (1.0 * totalTime/1000) + " seconds");
 	}
 }

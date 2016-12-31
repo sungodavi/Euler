@@ -78,6 +78,11 @@ public class Euler138
 		}
 		return sum;
 	}
+	
+	public static long Diophantine(int limit)
+	{
+		return 0;
+	}
 	public static void main(String[] args)
 	{
 		//System.out.println(checkUp(71976));

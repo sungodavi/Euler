@@ -158,7 +158,7 @@ public class Euler89
 		System.out.println(ans);
 		long endTime   = System.currentTimeMillis();
 		long totalTime = endTime - startTime;
-		System.out.println("Total time: " + (1.0 * totalTime/1000) + " seconds");
+		System.out.println("Total Time: " + (1.0 * totalTime/1000) + " seconds");
 		scan.close();
 	}
 
