@@ -79,6 +79,8 @@ public class Methods
 	{
 		boolean ans[] = new boolean[num + 1];
 		ArrayList<Integer> sieve = new ArrayList<Integer>();
+		if(num <= 1)
+			return sieve;
 		ans[0] = true;
 		ans[1] = true;
 		int sqrt = (int)Math.sqrt(num);

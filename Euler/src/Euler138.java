@@ -1,6 +1,33 @@
 import java.math.BigInteger;
+import java.util.ArrayList;
 public class Euler138 
 {
+	public static long recurse(int bUp, int lUp, int bDown, int lDown, int limit)
+	{
+		long x0 = 0,x1 = bUp,y1 = lUp,y0 = 0;
+		long X1, X0 = bDown, Y1, Y0 = lDown;
+		ArrayList<Long> list = new ArrayList<Long>();
+		list.add(Y1);
+		list.add(y1);
+		for(int i = 1; i <= limit/2 - 1; i++)
+		{
+			long temp1 = x1;
+			long temp2 = y1;
+			x1 = -9 * x0 -4 * y0 - 8;
+			y1 = -20 * x0 - 9 * y0 - 16;
+			x0 = temp1;
+			y0 = temp2;
+			
+			temp1 = X1;
+			temp2 = Y1;
+			X1 = -9 * X0 -4 * Y0 - 8;
+			Y1 = -20 * X0 - 9 * Y0 - 16;
+			X0 = temp1;
+			Y0 = temp2;
+			list.add(Y1);
+			list.add(y1);
+		}
+	}
 	public static long checkUp(long b)
 	{
 		BigInteger B = BigInteger.valueOf(b);
