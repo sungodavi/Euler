@@ -14,14 +14,26 @@ public class Euler100
 		return num.mod(sqrt).equals(BigInteger.ZERO) && num.divide(sqrt).equals(sqrt.add(BigInteger.ONE));
 	}
 	
+	public static BigInteger solve(int limit)
+	{
+		BigInteger x = BigInteger.valueOf(15);
+		BigInteger y = BigInteger.valueOf(21);
+		while(y.compareTo(BigInteger.TEN.pow(limit)) <= 0)
+		{
+			BigInteger xTemp = x.multiply(BigInteger.valueOf(3)).add(y.multiply(BigInteger.valueOf(2))).subtract(BigInteger.valueOf(2));
+			BigInteger yTemp = x.multiply(BigInteger.valueOf(4)).add(y.multiply(BigInteger.valueOf(3))).subtract(BigInteger.valueOf(3));
+			x = xTemp;
+			y = yTemp;
+		}
+		return x;
+	}
+	
 	public static void main(String[] args)
 	{
-		long x = (long)Math.pow(10, 12) + 1;
-		while(x > 0 && !check(x))
-		{
-			System.out.println(x);
-			x++;
-		}
-		System.out.println(x);
+		long startTime = System.currentTimeMillis();
+		System.out.println(solve(12));
+		long endTime = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		System.out.println("Total Time: " + (1.0 * totalTime/1000) + " seconds");
 	}
 }

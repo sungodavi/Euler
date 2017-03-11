@@ -29,6 +29,6 @@ public class Euler231
 		System.out.println(solve(20000000,15000000));
 		long endTime   = System.currentTimeMillis();
 		long totalTime = endTime - startTime;
-		System.out.println("Total time: " + (1.0 * totalTime/1000) + " seconds");
+		System.out.println("Total Time: " + (1.0 * totalTime/1000) + " seconds");
 	}
 }

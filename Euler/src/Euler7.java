@@ -25,7 +25,7 @@ public class Euler7
 				}
 			}
 		}
-		return prime[numOfPrimes-1];
+		return prime[numOfPrimes - 1];
 	}
 	public static void main(String[] args)
 	{
@@ -34,7 +34,7 @@ public class Euler7
 		System.out.println(x);
 		long endTime   = System.currentTimeMillis();
 		long totalTime = endTime - startTime;
-		System.out.println("Total time: " + (1.0 * totalTime/1000) + " seconds");
+		System.out.println("Total Time: " + (1.0 * totalTime/1000) + " seconds");
 	}
 
 }
