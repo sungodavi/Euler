@@ -1,73 +1,60 @@
-import java.util.*;
-class Exponent
+public class Euler159
 {
-	public int base;
-	public int exp;
-	public Exponent(int b, int e)
+	public static int[] roots;
+	public static int digitalRoot(int num)
 	{
-		base = b;
-		exp = e;
-	}
-	public String toString()
-	{
-		return base + " ^ " + exp;
-	}
-}
-public class Euler159 
-{
-	public static ArrayList<Exponent> factorize(int num)
-	{
-		ArrayList<Integer> sieve = Methods.sieve(num);
-		ArrayList<Exponent> factors = new ArrayList<Exponent>();
-		for(int i = 0; num > 1; i++)
+		int sum = 0;
+		while(num > 0)
 		{
-			int prime = sieve.get(i);
-			if(num % prime == 0)
-			{
-				int pow = 0;
-				while(num % prime == 0)
-				{
-					pow++;
-					num /= prime;
-				}
-				factors.add(new Exponent(prime,pow));
-			}
+			sum += num % 10;
+			num /= 10;
 		}
-		return factors;
+		if(sum >= 10)
+			return digitalRoot(sum);
+		return sum;
 	}
-	
 	public static int DR(int num)
 	{
-		while(num < 10)
+		return num - (int)((num -1)/9)*9;
+	}
+	public static int recurse(int num)
+	{
+		//System.out.println(num);
+		if(roots[num] > 0)
+			return roots[num];
+		int max = DR(num);
+		if(Methods.checkPrime(num))
 		{
-			int[] a = Methods.toArray(num);
-			int temp = 0;
-			for(int i: a)
-			{
-				temp += i;
-			}
-			num = temp;
+			roots[num] = max;
+			return max;
 		}
-		return num;
+		for(int i = 2; i <= Math.sqrt(num); i++)
+		{
+			if(num % i == 0)
+			{
+				max = Integer.max(max, recurse(i) + recurse(num/i));
+			}
+		}
+		roots[num] = max;
+		return max;
 	}
 	
-	public static int DRS(int num)
+	public static int sum(int limit)
 	{
-		ArrayList<Exponent> factors = factorize(num);
-		int totalFactors = 0;
-		for(Exponent pow: factors)
-			totalFactors += pow.exp;
-		for(int i = 1; i <= totalFactors; i++)
+		roots = new int[limit + 1];
+		int sum = 0;
+		for(int i = 2; i < limit; i++)
 		{
-			
+			sum += recurse(i);
 		}
+		return sum;
 	}
 	public static void main(String[] args)
 	{
-		ArrayList<Exponent> x = factorize(5880);
-		for(Exponent pow: x)
-		{
-			System.out.println(pow);
-		}
+		long startTime = System.currentTimeMillis();
+		System.out.println(sum(1000000));
+		long endTime = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		System.out.println("Total Time: " + (1.0 * totalTime/1000) + " seconds");
 	}
 }

@@ -4,7 +4,7 @@ public class Euler129
 	/**
 	 * Uses Euler's Theorem to find the order of 10 (mod n)
 	 */
-	public static long findLength(int n)
+	public static int findLength(int n)
 	{
 		if(n % 3 == 0)
 			n *= 9;

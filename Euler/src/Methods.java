@@ -101,15 +101,14 @@ public class Methods
 		boolean ans[] = new boolean[end + 1];
 		ArrayList<Integer> sieve = new ArrayList<Integer>();
 		
-		for(int i = 0; i < start; i++)
-			ans[i] = true;
+		ans[0] = ans[1] = true;
 		
 		for(int i = 2; i<= Math.sqrt(end); i++)
 			if(!ans[i])
 				for(int j = i*2; j <= end; j += i)
 					ans[j] = true;
 		
-		for(int i = 0; i < ans.length; i++)
+		for(int i = start; i < ans.length; i++)
 			if(!ans[i])
 				sieve.add(i);
 		
@@ -395,11 +394,5 @@ public class Methods
 			}
 		}
 		return ans;
-	}
-	
-	public static void main(String[] args)
-	{
-		int x = 36;
-		System.out.println(totient(2048));
 	}
 }
